@@ -46,11 +46,20 @@
         return data;
       }
 
+      async function fetchSocialPreviewUrl(repo) {
+        const apiUrl = `https://api.github.com/repos/${username}/${repo.name}/pages`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        return data.html_url;
+      }
+
       async function displayProjects() {
         const repos = await fetchRepoData(reposUrl);
         const projectsDiv = document.getElementById("projects");
 
-        repos.forEach((repo) => {
+        for (const repo of repos) {
+          const socialPreviewUrl = await fetchSocialPreviewUrl(repo);
+
           const projectDiv = document.createElement("div");
           projectDiv.classList.add("project");
 
@@ -67,11 +76,11 @@
           projectLink.appendChild(description);
 
           const image = document.createElement("img");
-          image.src = `${repo.html_url}/raw/master/social_preview.png`;
+          image.src = socialPreviewUrl;
           projectDiv.appendChild(image);
 
           projectsDiv.appendChild(projectDiv);
-        });
+        }
       }
 
       displayProjects();
