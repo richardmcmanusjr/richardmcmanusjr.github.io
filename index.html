@@ -65,7 +65,9 @@
 	<p>Check out some of the projects I have worked on:</p>
 	<ul id="repos"></ul>
 	<script>
-		fetch("https://api.github.com/users/richardmcmanusjr/repos")
+        const username = "richardmcmanusjr";
+
+		fetch(`https://api.github.com/users/${username}/repos`)
 			.then(response => response.json())
 			.then(data => {
 				const repos = data.filter(repo => !repo.fork);
@@ -90,7 +92,7 @@
 						li.appendChild(p);
 					}
 
-					const previewImgUrl = `https://raw.githubusercontent.com/YOUR_USERNAME/${name}/blob/main/preview.png`;
+					const previewImgUrl = `https://raw.githubusercontent.com/${username}/${name}/blob/main/preview.png`;
 					fetch(previewImgUrl)
 						.then(response => {
 							if (response.ok) {
@@ -112,5 +114,3 @@
 	</script>
 </body>
 </html>
- 
-// Check this
