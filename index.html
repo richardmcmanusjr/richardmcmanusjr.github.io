@@ -45,6 +45,20 @@
 			text-decoration: none;
 			font-size: 1.2rem;
 		}
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 0;
+			color: #333;
+		}
+		p.description {
+			color: #666;
+			margin-top: 10px;
+		}
+		img {
+			max-width: 100%;
+			height: auto;
+			margin-top: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -52,25 +66,63 @@
 	
 	<p>Check out some of the projects I've worked on:</p>
 	
-	<ul>
+	<ul id="project-list">
 		<li>
-			<h2>Project 1</h2>
-			<p>Description of project 1 goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			<a href="https://github.com/richardmcmanusjr/8-Bit-MIPS">View Code on GitHub</a>
+			<h2>Loading...</h2>
+			<div class="loading"></div>
 		</li>
-		<li>
-			<h2>Project 2</h2>
-			<p>Description of project 2 goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			<a href="https://github.com/richardmcmanusjr/16-Bit-Active-Level-Shifting-Board">View Code on GitHub</a>
-		</li>
-		<li>
-			<h2>Project 3</h2>
-			<p>Description of project 3 goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			<a href="https://github.com/richardmcmanusjr/FMC-to-Card-Edge-Level-Shifter">View Code on GitHub</a>
-		</li>
-		<!-- Add more projects as needed -->
 	</ul>
 	
 	<p>Feel free to take a look at the code and let me know if you have any questions!</p>
-</body>
-</html>
+	
+	<script>
+		// Replace these with your own GitHub username and repository names
+		const username = "richardmcmanusjr";
+		const repositories = [
+			"8-Bit-MIPS",
+			"16-Bit-Active-Level-Shifting-Board",
+			"FMC-to-Card-Edge-Level-Shifter"
+			// Add more repository names as needed
+		];
+		
+		// Fetch data from GitHub API for each repository
+		const fetchData = async () => {
+			const promises = repositories.map(async (repo) => {
+				const url = `https://api.github.com/repos/${username}/${repo}`;
+				const response = await fetch(url);
+				const data = await response.json();
+				return {
+					name: data.name,
+					description: data.description,
+					html_url: data.html_url,
+					image_url: `${data.html_url}/blob/master/preview.png?raw=true`
+				};
+			});
+			return await Promise.all(promises);
+		};
+		
+		// Populate the project list with the data from the API
+        const populateList = async () => {
+        const data = await fetchData();
+        const list = document.getElementById("project-list");
+        list.innerHTML = "";
+        data.forEach((repo) => {
+            const listItem = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = repo.html_url;
+            link.target = "_blank";
+            const title = document.createElement("h2");
+            title.textContent = repo.name;
+            const description = document.createElement("p");
+            description.textContent = repo.description;
+            description.classList.add("description");
+            const image = document.createElement("img");
+            image.src = repo.image_url;
+            link.appendChild(title);
+            listItem.appendChild(link);
+            listItem.appendChild(description);
+            listItem.appendChild(image);
+            list.appendChild(listItem);
+        });
+        };
+
