@@ -93,7 +93,7 @@
 						li.appendChild(p);
 					}
 
-					const previewImgUrl = `https://github.com/${username}/${name}/blob/main/preview.png`;
+					const previewImgUrl = `https://api.github.com/users/${username}/repos/contents/blob/main/preview.png`;
 					fetch(previewImgUrl)
 						.then(response => {
 							if (response.ok) {
