@@ -9,7 +9,9 @@
         font-family: Arial, sans-serif;
       }
       .project {
-        border: 1px solid black;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
         padding: 10px;
         margin-bottom: 10px;
         display: flex;
@@ -65,7 +67,7 @@
           projectLink.appendChild(description);
 
           const image = document.createElement("img");
-          image.src = repo.owner.avatar_url;
+          image.src = `${repo.html_url}/blob/master/social_preview.png`;
           projectDiv.appendChild(image);
 
           projectsDiv.appendChild(projectDiv);
