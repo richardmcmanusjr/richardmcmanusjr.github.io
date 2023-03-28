@@ -73,6 +73,7 @@
 				const repos = data.filter(repo => !repo.fork);
 
 				const reposList = document.getElementById("repos");
+                console.log(repos);
 
 				repos.forEach(repo => {
 					const { name, html_url, description } = repo;
