@@ -5,8 +5,7 @@
 	<style>
         .header img {
             position: relative;
-            left: 50px;
-            top: 50px
+            top: 50px;
             border-radius: 5px;
             width: 200px;
             height: 200px;
@@ -107,6 +106,7 @@
                 const h2 = document.createElement("h2");
                 const a = document.createElement("a");
                 a.href = html_url;
+                h.href = html_url
                 a.innerText = name;
                 h2.appendChild(a);
                 li.appendChild(h2);
