@@ -3,12 +3,18 @@
 <head>
 	<title>Richard McManus</title>
 	<style>
+        .header img {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: #555;
+        }
         .header {
-        padding: 60px;
-        text-align: center;
-        background: #1abc9c;
-        color: white;
-        font-size: 30px;
+            padding: 60px;
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            font-size: 30px;
         }
 		body {
 			font-family: Arial, sans-serif;
@@ -70,6 +76,7 @@
 <body>
 
 <div class="header">
+    <img src="https://github.com/richardmcmanusjr.png" alt="logo" />
     <h1>Richard McManus</h1>
     <p>Hello there!</p>
 </div>
@@ -79,7 +86,6 @@
 <ul id="repos"></ul>
 <script>
     const username = "richardmcmanusjr";
-
     fetch(`https://api.github.com/users/${username}/repos`)
         .then(response => response.json())
         .then(data => {
