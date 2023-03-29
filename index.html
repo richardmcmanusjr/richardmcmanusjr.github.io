@@ -71,7 +71,7 @@
 			.then(response => response.json())
 			.then(data => {
 				const repos = data.filter(repo => !repo.fork);
-                repos = data.filter(repo => repo.name != username)
+                repos = repos.filter(repo => repo.name != username)
                 console.log(repos);
 
 				const reposList = document.getElementById("repos");
