@@ -3,6 +3,13 @@
 <head>
 	<title>Richard McManus</title>
 	<style>
+        .header {
+        padding: 60px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+        font-size: 30px;
+        }
 		body {
 			font-family: Arial, sans-serif;
 			background-color: #f2f2f2;
@@ -61,59 +68,65 @@
 	</style>
 </head>
 <body>
-	<h1>My Projects</h1>
-	<p>Check out some of the projects I have worked on:</p>
-	<ul id="repos"></ul>
-	<script>
-        const username = "richardmcmanusjr";
 
-		fetch(`https://api.github.com/users/${username}/repos`)
-			.then(response => response.json())
-			.then(data => {
-				const repos = data.filter(repo => !repo.fork && repo.name != username);
-                console.log(repos);
+<div class="header">
+    <h1>Richard McManus</h1>
+    <p>Hello there!</p>
+</div>
 
-				const reposList = document.getElementById("repos");
+<h1>My Projects</h1>
+<p>Check out some of the projects I have worked on:</p>
+<ul id="repos"></ul>
+<script>
+    const username = "richardmcmanusjr";
 
-				repos.forEach(repo => {
-					const { name, html_url, description } = repo;
+    fetch(`https://api.github.com/users/${username}/repos`)
+        .then(response => response.json())
+        .then(data => {
+            const repos = data.filter(repo => !repo.fork && repo.name != username);
+            console.log(repos);
 
-					const li = document.createElement("li");
+            const reposList = document.getElementById("repos");
 
-					const h2 = document.createElement("h2");
-					const a = document.createElement("a");
-					a.href = html_url;
-					a.innerText = name;
-					h2.appendChild(a);
-					li.appendChild(h2);
+            repos.forEach(repo => {
+                const { name, html_url, description } = repo;
 
-					if (description) {
-						const p = document.createElement("p");
-						p.innerText = description;
-						li.appendChild(p);
-					}
+                const li = document.createElement("li");
 
-					const previewImgUrl = `https://raw.githubusercontent.com/${username}/${name}/main/preview.png`;
-					fetch(previewImgUrl)
-						.then(response => {
-							if (response.ok) {
-								const img = document.createElement("img");
-								img.src = previewImgUrl;
-								li.insertBefore(img, li.firstChild);
-							}
-						})
-						<!--
-                        .catch(error => {
-							console.log(`Error fetching preview image for ${name}:`, error);
-						});
-                        -->
+                const h2 = document.createElement("h2");
+                const a = document.createElement("a");
+                a.href = html_url;
+                a.innerText = name;
+                h2.appendChild(a);
+                li.appendChild(h2);
 
-					reposList.appendChild(li);
-				});
-			})
-			.catch(error => {
-				console.log("Error fetching repos:", error);
-			});
-	</script>
+                if (description) {
+                    const p = document.createElement("p");
+                    p.innerText = description;
+                    li.appendChild(p);
+                }
+
+                const previewImgUrl = `https://raw.githubusercontent.com/${username}/${name}/main/preview.png`;
+                fetch(previewImgUrl)
+                    .then(response => {
+                        if (response.ok) {
+                            const img = document.createElement("img");
+                            img.src = previewImgUrl;
+                            li.insertBefore(img, li.firstChild);
+                        }
+                    })
+                    <!--
+                    .catch(error => {
+                        console.log(`Error fetching preview image for ${name}:`, error);
+                    });
+                    -->
+
+                reposList.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.log("Error fetching repos:", error);
+        });
+</script>
 </body>
 </html>
