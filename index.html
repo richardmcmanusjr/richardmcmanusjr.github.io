@@ -101,18 +101,23 @@
             repos.forEach(repo => {
                 const { name, html_url, description } = repo;
                 const li = document.createElement("li");
-                const h2 = document.createElement("h2");
                 const a = document.createElement("a");
                 a.href = html_url;
-                a.innerText = name;
                 a.target="_blank"
-                h2.appendChild(a);
-                li.appendChild(h2);
+                li.appendChild(a);
+
+                const h2 = document.createElement("h2");
+                const h2a = document.createElement("a");
+                h2a.href = html_url;
+                h2a.innerText = name;
+                h2a.target="_blank"
+                h2.appendChild(h2a);
+                a.appendChild(h2);
 
                 if (description) {
                     const p = document.createElement("p");
                     p.innerText = description;
-                    li.appendChild(p);
+                    a.appendChild(p);
                 }
 
                 const previewImgUrl = `https://raw.githubusercontent.com/${username}/${name}/main/preview.png`;
@@ -121,14 +126,9 @@
                         if (response.ok) {
                             const img = document.createElement("img");
                             img.src = previewImgUrl;
-                            li.insertBefore(img, li.firstChild);
+                            a.insertBefore(img, h2);
                         }
                     })
-                    <!--
-                    .catch(error => {
-                        console.log(`Error fetching preview image for ${name}:`, error);
-                    });
-                    -->
                 reposList.appendChild(li);
             });
         })
