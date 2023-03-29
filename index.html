@@ -71,9 +71,9 @@
 			.then(response => response.json())
 			.then(data => {
 				const repos = data.filter(repo => !repo.fork);
+                console.log(reposList);
 
 				const reposList = document.getElementById("repos");
-                console.log(reposList);
 
 				repos.forEach(repo => {
 					const { name, html_url, description } = repo;
@@ -102,9 +102,11 @@
 								li.insertBefore(img, li.firstChild);
 							}
 						})
-						.catch(error => {
+						<!--
+                        .catch(error => {
 							console.log(`Error fetching preview image for ${name}:`, error);
 						});
+                        -->
 
 					reposList.appendChild(li);
 				});
