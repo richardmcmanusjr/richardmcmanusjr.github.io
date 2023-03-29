@@ -70,8 +70,7 @@
 		fetch(`https://api.github.com/users/${username}/repos`)
 			.then(response => response.json())
 			.then(data => {
-				const repos = data.filter(repo => !repo.fork);
-                repos = repos.filter(repo.name != username)
+				const repos = data.filter(repo => !repo.fork && repo.name != username);
                 console.log(repos);
 
 				const reposList = document.getElementById("repos");
