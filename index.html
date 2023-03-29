@@ -104,7 +104,6 @@
                 const h2 = document.createElement("h2");
                 const a = document.createElement("a");
                 a.href = html_url;
-                h2.href = html_url
                 a.innerText = name;
                 h2.appendChild(a);
                 li.appendChild(h2);
@@ -121,8 +120,6 @@
                         if (response.ok) {
                             const img = document.createElement("img");
                             img.src = previewImgUrl;
-                            img.alt="(opens in new tab)";
-                            img.href = html_url;
                             li.insertBefore(img, li.firstChild);
                         }
                     })
