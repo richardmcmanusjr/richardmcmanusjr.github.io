@@ -119,7 +119,10 @@
                     .then(response => {
                         if (response.ok) {
                             const img = document.createElement("img");
-                            img.src = previewImgUrl;
+                            <a target="_blank" href="https://www.wikipedia.org">
+                                <img alt="(opens in new tab)" src={previewImgUrl} />
+                            </a>
+                            img.appendChild(a)
                             li.insertBefore(img, li.firstChild);
                         }
                     })
