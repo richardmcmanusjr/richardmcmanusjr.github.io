@@ -121,8 +121,8 @@
                         if (response.ok) {
                             const img = document.createElement("img");
                             img.src = previewImgUrl;
-                            img.alt="(opens in new tab)"
-                            img.appendChild(a)
+                            img.alt="(opens in new tab)";
+                            img.href = html_url;
                             li.insertBefore(img, li.firstChild);
                         }
                     })
@@ -131,7 +131,6 @@
                         console.log(`Error fetching preview image for ${name}:`, error);
                     });
                     -->
-
                 reposList.appendChild(li);
             });
         })
