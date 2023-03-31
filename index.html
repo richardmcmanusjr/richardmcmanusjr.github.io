@@ -104,38 +104,41 @@
             const reposList = document.getElementById("repos");
 
             repos.forEach(repo => {
-                const { name, html_url, description } = repo;
-                const li = document.createElement("li");
-                const h2 = document.createElement("h2");
-                const a = document.createElement("a");
-                a.href = html_url;
-                a.innerText = name;
-                a.target="_blank"
-                h2.appendChild(a);
-                li.appendChild(h2);
+            const { name, html_url, description } = repo;
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = html_url;
+            a.target="_blank"
+            li.appendChild(a);
 
-                if (description) {
-                    const p = document.createElement("p");
-                    p.innerText = description;
-                    li.appendChild(p);
-                }
+            const h2 = document.createElement("h2");
+            const h2a = document.createElement("a");
+            h2a.href = html_url;
+            h2a.innerText = name;
+            h2a.target="_blank"
+            h2.appendChild(h2a);
+            a.appendChild(h2);
 
-                const previewImgUrl = `https://raw.githubusercontent.com/${username}/${name}/main/preview.png`;
-                fetch(previewImgUrl)
-                    .then(response => {
-                        if (response.ok) {
-                            const img = document.createElement("img");
-                            img.src = previewImgUrl;
-                            li.insertBefore(img, li.firstChild);
-                        }
-                    })
-                    <!--
-                    .catch(error => {
-                        console.log(`Error fetching preview image for ${name}:`, error);
-                    });
-                    -->
-                reposList.appendChild(li);
-            });
+            if (description) {
+                const p = document.createElement("p");
+                p.innerText = description;
+                a.appendChild(p);
+            }
+
+            const previewImgUrl = `https://raw.githubusercontent.com/${username}/${name}/main/preview.png`;
+            fetch(previewImgUrl)
+                .then(response => {
+                    if (response.ok) {
+                        const img = document.createElement("img");
+                        img.src = previewImgUrl;
+                        a.insertBefore(img, h2);
+                    }
+                })
+                .catch(error => {
+                    console.log(`Error fetching preview image for ${name}:`, error);
+                });
+            reposList.appendChild(li);
+        });
         })
         .catch(error => {
             console.log("Error fetching repos:", error);
