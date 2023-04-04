@@ -20,6 +20,12 @@
             color: white;
             font-size: 30px;
         }
+        .header p{
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+        text-decoration: underline;
+        }
         .bio {
             display: flex;
             align-items: center;
@@ -139,6 +145,7 @@
 			text-align: center;
 			font-size: 1.2rem;
 			color: #666;
+            text-decoration: underline;
 		}
 
 	</style>
@@ -148,8 +155,9 @@
 <div class="header">
     <img src="https://github.com/richardmcmanusjr.png" alt="" />
     <h1>Richard McManus</h1>
-    <p>Hello there!</p>
+    <a href="https://raw.githubusercontent.com/richardmcmanusjr/WebsiteContent/main/RichardMcManusResume.pdf" download><p>Download Resume</p></a>
 </div>
+    
 
 <div class="bio">
     <h2>About Me</h2>
@@ -176,7 +184,7 @@
     fetch(`https://api.github.com/users/${username}/repos`)
         .then(response => response.json())
         .then(data => {
-            const repos = data.filter(repo => !repo.fork && repo.name != username);
+            const repos = data.filter(repo => !repo.fork && repo.name != username && repo.name != 'WebsiteContent');
             console.log(repos);
 
             const reposList = document.getElementById("repos");
