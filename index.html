@@ -4,6 +4,55 @@
 	<title>Richard McManus</title>
     <meta name="description" content="Richard McManus is a junior electrical engineering student at the University of Notre Dame.">
 	<style>
+        .navbar {
+            background-color: #1abc9c;
+            z-index: 100;
+            position: fixed;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+            width: 100%;
+        }
+        .navbar.scrolled {
+            background-color: #fff !important;
+            transition: background-color 200ms linear;
+        }
+
+        /* Style the links inside the navbar */
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        /* Change color on hover */
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar.scrolled {
+            background-color: #1abc9c !important;
+            transition: background-color 200ms linear;
+        }
+
+        /* Style the active link */
+        .active {
+            background-color: #999;
+            color: white;
+        }
+
+      /* Add padding to the content */
+        .content {
+            padding-top: 60px;
+        }
         .header img {
             position: relative;
             top: 50px;
@@ -27,6 +76,7 @@
         color: #666;
         text-decoration: underline;
         }
+        
         .bio {
             display: flex;
             align-items: center;
@@ -67,6 +117,46 @@
             line-height: 1.5;
             text-decoration: underline;
         }
+        .projects {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #f2f2f2;
+            padding: 50px 0;
+            margin-bottom: 50px;
+        }
+
+        .projects h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .projects p {
+            text-align: center;
+			font-size: 1.2rem;
+			color: #666;
+        }
+
+        .projects p1 {
+            font-size: 24px;
+            color: #666;
+            text-align: center;
+            max-width: 1200px;
+            line-height: 1.5;
+        }
+
+        .projects ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			margin-top: 50px;
+		}
 
 		body {
             opacity: 0;
@@ -80,7 +170,9 @@
 		h1 {
 			text-align: center;
 			margin-top: 50px;
-			color: #333;
+			font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
 		}
 		p {
 			text-align: center;
@@ -159,34 +251,101 @@
 		}
 
 	</style>
-</head>
-<body>
+<head>
+    <title>Navigation Bar</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // Add active class to clicked link and remove from siblings
+        $('.navbar a').click(function() {
+          $(this).addClass('active').siblings().removeClass('active');
+        });
+      });
+
+    </script>
+    
+  </head>
+
+<!-- Navigation bar -->
+<div class="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#projects">My Projects</a>
+    <a href="#contact">Contact Me</a>
+</div>
+<script>
+    var contact = false
+    window.addEventListener("scroll", function() {
+        var navbar = document.querySelector(".navbar");
+        var scrolled = window.scrollY > 0;
+        navbar.classList.toggle("scrolled", scrolled);
+
+        // Update the active link in the bottom navigation bar
+        var sections = document.querySelectorAll(".section");
+        sections.forEach(function(section) {
+            var sectionTop = section.offsetTop;
+            var sectionHeight = section.offsetHeight;
+            var id = section.getAttribute("id");
+            var navLink = document.querySelector(".navbar a[href='#" + id + "']");
+            console.log(navLink);
+            if (section.id == "contact"){
+                if (window.scrollY >= sectionTop + sectionHeight/2 - window.innerHeight) {
+                    navLink.classList.add("active");
+                    contact = true;
+                } else {
+                    navLink.classList.remove("active");
+                    contact = false;
+                }
+            }
+            else {
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 50 && !contact){
+                    navLink.classList.add("active");
+                } else {
+                    navLink.classList.remove("active");
+                }
+            }
+        });
+    });
+</script>
 
 <div class="header">
+    <div id="home" class="section">
     <img src="https://github.com/richardmcmanusjr.png" alt="Richard McManus" />
     <h1>Richard McManus</h1>
     <a href="https://raw.githubusercontent.com/richardmcmanusjr/WebsiteContent/main/RichardMcManusResume.pdf" download><p>Download Resume</p></a>
+    <a href="./3DMOSFETBANDS_2023_05_30/blog.html"><p>2D MOSFET Band Diagram</p></a>
+    </div>
 </div>
     
+<div class="content">
+    <div id="about" class="section">
+        <div class="bio">
+            <h2>About Me</h2>
+            <p>I am a third-year electrical engineering student at Notre Dame with a passion for innovation.</p>
 
-<div class="bio">
-    <h2>About Me</h2>
-    <p>I am a third-year electrical engineering student at Notre Dame with a passion for innovation.</p>
+            <p>Currently, I am pursuing this passion through my startup, <a href='https://moundpower.com/home/' target="_blank"> Mound Power, LLC.</a> Mound Power began as a high school project intended to help baseball pitchers reduce injuries through an additional focus on lower body engagement. After our first prototype started gaining traction in the baseball community, the team dove in to create an affordable device that accurately measures the forces generated by a pitcher's lower body in real-time. Two years and seven iterations later, Mound Power is excited to have helped over 1000 pitchers train safely, have generated revenue from early adopters, and have been an exhibitor at the 2022 American Baseball Coaches Association Convention.</p>
+                
+            <p>Today, programs across the nation, from the MLB to Little League, use Mound Power to keep their pitchers safe and at the top of their game. While the team is excited by our traction in baseball, we are aware of numerous other markets eager to get their hands on our technology and look forward to expanding into those markets in the future.</p>
+                
+            <p>Beyond entrepreneurship, I am a member of both the Sorin Scholars and the Grand Challenge Scholars. I am currently in my fourth semester of undergraduate research with Dr. Snider's group where I have designed and built circuits and programming interfaces to test experimental adiabatic logic for improving computational efficiency.</p>
+        </div>
+    </div>
 
-    <p>Currently, I am pursuing this passion through my startup, <a href='https://moundpower.com/home/' target="_blank"> Mound Power, LLC.</a> Mound Power began as a high school project intended to help baseball pitchers reduce injuries through an additional focus on lower body engagement. After our first prototype started gaining traction in the baseball community, the team dove in to create an affordable device that accurately measures the forces generated by a pitcher's lower body in real-time. Two years and seven iterations later, Mound Power is excited to have helped over 1000 pitchers train safely, have generated revenue from early adopters, and have been an exhibitor at the 2022 American Baseball Coaches Association Convention.</p>
-        
-    <p>Today, programs across the nation, from the MLB to Little League, use Mound Power to keep their pitchers safe and at the top of their game. While the team is excited by our traction in baseball, we are aware of numerous other markets eager to get their hands on our technology and look forward to expanding into those markets in the future.</p>
-        
-    <p>Beyond entrepreneurship, I am a member of both the Sorin Scholars and the Grand Challenge Scholars. I am currently in my fourth semester of undergraduate research with Dr. Snider's group where I have designed and built circuits and programming interfaces to test experimental adiabatic logic for improving computational efficiency.</p>
-</div>
+    <div id="projects" class="section">
+        <div class="projects">
+            <h1>My Projects</h1>
+            <p1>Check out some of the projects I have worked on:</p1>
+            <ul id="repos"></ul>
+            </div>
+    </div>
 
-<h1>My Projects</h1>
-<p>Check out some of the projects I have worked on:</p>
-<ul id="repos"></ul>
-
-<div class="footer">
-    <h2>Contact Me:</h2>
-    <a href=mailto:rmcmanus2@nd.edu> <p>rmcmanu2@nd.edu</p> </a> 
+    <div id="contact" class="section">
+        <div class="footer">
+            <h2>Contact Me:</h2>
+            <a href=mailto:rmcmanus2@nd.edu> <p>rmcmanu2@nd.edu</p> </a> 
+            <a href=https://www.linkedin.com/in/richard-mcmanus-jr target="_blank"> <p>Linkedin</p> </a> 
+        </div>
+    </div>
 </div>
 
 <script>
