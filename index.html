@@ -54,15 +54,16 @@
             padding-top: 60px;
         }
         .header img {
+            background: #1abc9c;
+            padding-top: 60px;
             position: relative;
             top: 50px;
             border-radius: 5px;
             width: 200px;
             height: 200px;
-            background: #555;
         }
         .header {
-            padding: 60px;
+            padding-bottom: 60px;
             text-align: center;
             background: #1abc9c;
             border-radius: 5px;
@@ -262,7 +263,7 @@
 
 	</style>
 <head>
-    <title>Navigation Bar</title>
+    <title>Richard McManus</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
       $(document).ready(function() {
@@ -278,43 +279,46 @@
 
 <!-- Navigation bar -->
 <div class="navbar">
-    <a href="#home" class="active">Home</a>
+    <a href="#home" class="active" >Home</a>
     <a href="#about">About Me</a>
     <a href="#projects">My Projects</a>
     <a href="#contact">Contact Me</a>
 </div>
-<script>
-    var contact = false
-    window.addEventListener("scroll", function() {
-        var navbar = document.querySelector(".navbar");
-        var scrolled = window.scrollY > 0;
-        navbar.classList.toggle("scrolled", scrolled);
 
-        // Update the active link in the bottom navigation bar
+<script>
+    const navLi = document.querySelectorAll(".navbar a");
+    console.log(navLi);
+    var windowHeight = window.innerHeight;
+    window.addEventListener("scroll", function() {
         var sections = document.querySelectorAll(".section");
-        sections.forEach(function(section) {
-            var sectionTop = section.offsetTop;
-            var sectionHeight = section.offsetHeight;
-            var id = section.getAttribute("id");
-            var navLink = document.querySelector(".navbar a[href='#" + id + "']");
-            console.log(navLink);
-            if (section.id == "contact"){
-                if (window.scrollY >= sectionTop + sectionHeight/2 - window.innerHeight) {
-                    navLink.classList.add("active");
-                    contact = true;
-                } else {
-                    navLink.classList.remove("active");
-                    contact = false;
+        window.onscroll = () => {
+            var current = "";
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const precursor = "#"
+                if (section.id != "contact"){
+                if (pageYOffset >= sectionTop - windowHeight/2){
+                        current = precursor.concat(section.getAttribute("id"));
+                    }
                 }
-            }
-            else {
-                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 50 && !contact){
-                    navLink.classList.add("active");
-                } else {
-                    navLink.classList.remove("active");
+                else{
+                    if (pageYOffset >= sectionTop - windowHeight + sectionHeight/2){
+                        current = precursor.concat(section.getAttribute("id"));
+                    }
                 }
-            }
-        });
+            });
+
+            navLi.forEach((li) => {
+                console.log(current);
+                console.log(li.getAttribute("href"));
+                li.classList.remove("active");
+                if(li.getAttribute("href") == current) {
+                    li.classList.add("active");
+                }
+            });
+        };
     });
 </script>
 
