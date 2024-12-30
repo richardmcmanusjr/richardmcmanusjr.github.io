@@ -406,18 +406,21 @@ header .intro-text .intro-heading {
 
 @media(min-width:768px) {
 	header {
-    text-align: center;
-    color: #fff;
-    background-attachment: scroll;
-    background-image: url('{{ site.baseurl }}/img/backgrounds/header.gif'); 
-    /*background-position: center center;*/
-    background-position: top center;
-    background-repeat: none;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    /*opacity: 0.5;*/
+        text-align: center;
+        color: #fff;
+        background-attachment: scroll;
+        background-image: url('{{ site.baseurl }}/img/backgrounds/header.gif'); 
+        /*background-position: center center;*/
+        background-position: top center;
+        background-repeat: none;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        /*opacity: 0.5;*/
+        .intro-text{
+            transform: none
+        }
 	}
 
     header .intro-text {
