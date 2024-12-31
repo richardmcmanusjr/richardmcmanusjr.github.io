@@ -1,53 +1,47 @@
-- title: Activity
-  subtitle: Description
+- title: Downtown Colorado Springs
   modal-id: 1
   img: 1.jpg
   thumbnail: 1.jpg
   drive: X minutes
   link: https://goo.gl/maps/MY49ntTHETuat5jN8
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique rutrum mauris nec rutrum. Nam sem ex, bibendum vitae velit eu, tempor sagittis nunc. Donec nunc erat, tempor ac finibus vel, molestie eget augue. Curabitur eleifend venenatis mi, sagittis faucibus ex pellentesque in. Etiam efficitur, augue sed faucibus laoreet, ligula diam euismod ipsum, facilisis pharetra sapien tortor eget nibh. Nulla vel purus suscipit, rutrum diam.
+  description: Stroll through charming streets lined with small shops and hidden gem restaurants. One of our top picks is The Skirted Heifer, a must-try burger joint that we wholeheartedly recommend!
 
-- title: Activity
-  subtitle: Description
+- title: Air Force Academy
   modal-id: 2
   img: 2.jpg
   thumbnail: 2.jpg
   drive: X minutes
   link: https://goo.gl/maps/MY49ntTHETuat5jN8
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique rutrum mauris nec rutrum. Nam sem ex, bibendum vitae velit eu, tempor sagittis nunc. Donec nunc erat, tempor ac finibus vel, molestie eget augue. Curabitur eleifend venenatis mi, sagittis faucibus ex pellentesque in. Etiam efficitur, augue sed faucibus laoreet, ligula diam euismod ipsum, facilisis pharetra sapien tortor eget nibh. Nulla vel purus suscipit, rutrum diam.
+  description: Marvel at the stunning views and visit the iconic Cadet Chapel on campus. It’s a blend of architectural brilliance and natural beauty.
 
-- title: Activity
-  subtitle: Description
+- title: Manitou Springs
   modal-id: 3
   img: 3.jpg
   thumbnail: 3.jpg
   drive: X minutes
   link: https://goo.gl/maps/MY49ntTHETuat5jN8
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique rutrum mauris nec rutrum. Nam sem ex, bibendum vitae velit eu, tempor sagittis nunc. Donec nunc erat, tempor ac finibus vel, molestie eget augue. Curabitur eleifend venenatis mi, sagittis faucibus ex pellentesque in. Etiam efficitur, augue sed faucibus laoreet, ligula diam euismod ipsum, facilisis pharetra sapien tortor eget nibh. Nulla vel purus suscipit, rutrum diam.
+  description: Discover this quaint mountain town filled with boutique shops, unique art galleries, and mineral spring fountains. Perfect for a leisurely day of exploration.
 
-- title: Activity
-  subtitle: Description
+- title: Garden of the Gods
   modal-id: 4
   img: 4.jpg
   thumbnail: 4.jpg
   drive: X minutes
   link: https://goo.gl/maps/MY49ntTHETuat5jN8
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique rutrum mauris nec rutrum. Nam sem ex, bibendum vitae velit eu, tempor sagittis nunc. Donec nunc erat, tempor ac finibus vel, molestie eget augue. Curabitur eleifend venenatis mi, sagittis faucibus ex pellentesque in. Etiam efficitur, augue sed faucibus laoreet, ligula diam euismod ipsum, facilisis pharetra sapien tortor eget nibh. Nulla vel purus suscipit, rutrum diam.
+  description: Experience breathtaking red rock formations and scenic hiking trails. A true natural wonder you won’t want to miss!
 
-- title: Activity
-  subtitle: Description
+- title: Helen Hunt Falls
   modal-id: 5
   img: 5.jpg
   thumbnail: 5.jpg
   drive: X minutes
   link: https://goo.gl/maps/MY49ntTHETuat5jN8
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique rutrum mauris nec rutrum. Nam sem ex, bibendum vitae velit eu, tempor sagittis nunc. Donec nunc erat, tempor ac finibus vel, molestie eget augue. Curabitur eleifend venenatis mi, sagittis faucibus ex pellentesque in. Etiam efficitur, augue sed faucibus laoreet, ligula diam euismod ipsum, facilisis pharetra sapien tortor eget nibh. Nulla vel purus suscipit, rutrum diam.
+  description: Take a short hike to this serene waterfall and soak in the beauty of nature.
 
-- title: Activity
-  subtitle: Description
+- title: Pikes Peak
   modal-id: 6
   img: 6.jpg
   thumbnail: 6.jpg
   drive: X minutes
   link: https://goo.gl/maps/MY49ntTHETuat5jN8
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique rutrum mauris nec rutrum. Nam sem ex, bibendum vitae velit eu, tempor sagittis nunc. Donec nunc erat, tempor ac finibus vel, molestie eget augue. Curabitur eleifend venenatis mi, sagittis faucibus ex pellentesque in. Etiam efficitur, augue sed faucibus laoreet, ligula diam euismod ipsum, facilisis pharetra sapien tortor eget nibh. Nulla vel purus suscipit, rutrum diam.
+  description: Venture to the summit of the iconic 14,115-foot Pikes Peak via the scenic Cog Railway or the winding Pikes Peak Highway, and enjoy breathtaking views, a gift shop, and a restaurant at the top.
