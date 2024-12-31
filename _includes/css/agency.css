@@ -1034,47 +1034,58 @@ body {
     webkit-tap-highlight-color: #{{ site.data.template.color.primary }};
 }
 
+#travel .section-heading{
+    align-items: center; /* Centers content horizontally */
+    text-align: center;
+    margin-bottom: 30px;
+}
 #travel .row {
     display: flex;
-    justify-content: center; /* Centers the two columns horizontally */
-    align-items: center; /* Centers content vertically (if needed) */
-    gap: 200px; /* Adds 50px of space between columns */
+    justify-content: space-around; /* Ensures even spacing between circles */
+    align-items: flex-start; /* Aligns items to the top */
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+    gap: 0; /* Removes vertical gap */
 }
 
-#travel .col-lg-3 {
+#travel .col-lg-3, #travel .col-md-4 {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center-align content in the column */
-    text-align: center; /* Center-align text */
-    width: 400px
-
-}
-
-#travel .service-heading {
-    width: 400px
+    flex-direction: column; /* Stacks content vertically */
+    justify-content: flex-start; /* Aligns content to the top */
+    align-items: center; /* Centers content horizontally */
+    text-align: center; /* Ensures text alignment */
+    max-width: 300px; /* Ensures consistent width */
 }
 
 #travel .fa-stack {
-    display: inline-block;
-    margin: 0 auto; /* Ensures the icon stack is centered */
+    margin-bottom: 15px; /* Adds space below the icon */
 }
 
-#travel .col-md-4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Ensures all content in each column is centered */
-    text-align: center; /* Ensures text stays centered */
-    width: 300px; /* Fixes width for each column */
-}
-
-#travel .section-heading {
-    margin-bottom: 30px; /* Optional: Adds spacing below the heading */
+#travel .service-heading {
+    margin-top: 0; /* Aligns the heading closer to the icon */
+    margin-bottom: 10px; /* Adds consistent spacing below the heading */
+    white-space: nowrap; /* Prevents the heading from wrapping */
 }
 
 #travel .text-muted {
-    max-width: 280px; /* Makes text width consistent */
-    margin: 0 auto; /* Centers the text */
+    max-width: 280px; /* Consistent width for the text */
+    line-height: 1.5; /* Improves readability */
+    margin: 0 auto; /* Centers the text block */
 }
+
+@media (max-width: 768px) {
+    #travel .row {
+        flex-direction: column; /* Stacks the columns vertically */
+        align-items: center; /* Centers each column */
+        gap: 30px; /* Adds vertical spacing between the items */
+    }
+
+    #travel .col-lg-3, #travel .col-md-4 {
+        width: 100%; /* Makes each column take the full width */
+        max-width: 400px; /* Ensures consistent column width */
+        margin: 0 auto; /* Centers the column horizontally */
+    }
+}
+
 
 #venue {
     padding: 50px 0; /* Adds spacing around the section */
