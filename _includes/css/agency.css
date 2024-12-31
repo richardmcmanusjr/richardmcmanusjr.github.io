@@ -1080,14 +1080,23 @@ body {
     padding: 50px 0; /* Adds spacing around the section */
 }
 
-#venue .row.align-items-center {
-    display: flex;
-    align-items: stretch; /* Ensures equal height for columns */
-}
-
 #venue .col-md-6.d-flex {
     display: flex;
     justify-content: center; /* Centers text content horizontally */
+
+}
+#venue .text-muted{
+    line-height: 2.0; /* Adjusts line spacing (1.8 times the font size) */
+}
+
+#venue .row.align-items-center {
+    display: flex;
+    align-items: center; /* Keeps the image and text vertically aligned */
+    flex-wrap: wrap; /* Allows wrapping to new lines */
+}
+
+#venue .col-md-6 {
+    flex: 1 1 50%; /* Ensures both columns take up equal space by default */
 }
 
 #venue img {
@@ -1096,10 +1105,6 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#venue .text-muted{
-    line-height: 2.0; /* Adjusts line spacing (1.8 times the font size) */
 }
 
 .google-maps {
@@ -1113,4 +1118,14 @@ body {
     border: 1px solid #ddd;
 }
 
+@media (max-width: 992px) { /* Adjust for screen widths smaller than 768px */
+    #venue .col-md-6 {
+        flex: 1 1 100%; /* Makes each column take up the full width */
+        text-align: center; /* Optional: Center-align text for smaller screens */
+    }
+
+    #venue img {
+        margin-top: 0px; /* Adds spacing between text and image when stacked */
+    }
+}
 
