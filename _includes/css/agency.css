@@ -456,7 +456,7 @@ section {
 
 section h2.section-heading {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     font-size: 40px;
 }
 
@@ -1033,3 +1033,84 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #{{ site.data.template.color.primary }};
 }
+
+#travel .row {
+    display: flex;
+    justify-content: center; /* Centers the two columns horizontally */
+    align-items: center; /* Centers content vertically (if needed) */
+    gap: 200px; /* Adds 50px of space between columns */
+}
+
+#travel .col-lg-3 {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center-align content in the column */
+    text-align: center; /* Center-align text */
+    width: 400px
+
+}
+
+#travel .service-heading {
+    width: 400px
+}
+
+#travel .fa-stack {
+    display: inline-block;
+    margin: 0 auto; /* Ensures the icon stack is centered */
+}
+
+#travel .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures all content in each column is centered */
+    text-align: center; /* Ensures text stays centered */
+    width: 300px; /* Fixes width for each column */
+}
+
+#travel .section-heading {
+    margin-bottom: 30px; /* Optional: Adds spacing below the heading */
+}
+
+#travel .text-muted {
+    max-width: 280px; /* Makes text width consistent */
+    margin: 0 auto; /* Centers the text */
+}
+
+#venue {
+    padding: 50px 0; /* Adds spacing around the section */
+}
+
+#venue .row.align-items-center {
+    display: flex;
+    align-items: stretch; /* Ensures equal height for columns */
+}
+
+#venue .col-md-6.d-flex {
+    display: flex;
+    justify-content: center; /* Centers text content horizontally */
+}
+
+#venue img {
+    max-width: 100%;
+    height: auto; /* Ensures the image scales while maintaining aspect ratio */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#venue .text-muted{
+    line-height: 2.0; /* Adjusts line spacing (1.8 times the font size) */
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 0;
+    margin-top: 30px;
+}
+
+.google-maps iframe {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+
