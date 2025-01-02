@@ -537,11 +537,13 @@ section h3.light-contrast {
 }
 
 #portfolio .portfolio-item .portfolio-caption {
-    margin: 0 auto;
-    padding: 25px;
-    max-width: 400px;
-    text-align: center;
-    background-color: #fff;
+    height: 60px; /* Set a consistent height for all captions */
+    display: flex;
+    align-items: center; /* Centers text vertically */
+    justify-content: center; /* Centers text horizontally */
+    text-align: center; /* Ensures the text remains centered */
+    margin-top: 10px; /* Adds spacing between the image and the caption */
+
 }
 
 #portfolio .portfolio-item .portfolio-caption h4 {
@@ -940,6 +942,7 @@ ul.social-buttons li a:active {
 .btn:active:focus {
     outline: 0;
 }
+
 
 .portfolio-modal .modal-content {
     padding: 100px 0;
