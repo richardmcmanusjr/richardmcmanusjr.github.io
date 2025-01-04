@@ -796,36 +796,6 @@ aside.clients img {
     margin: 50px auto;
 }
 
-form .form-control {
-    background: rgba(255, 255, 255, 0.8); /* Makes the background semi-transparent */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Matches the border style */
-    border-radius: 5px; /* Matches the input's rounded corners */
-    color: #222; /* Text color */
-    padding: 10px; /* Padding inside the dropdown */
-    font-size: 16px; /* Adjust font size */
-    -webkit-appearance: none; /* Removes default dropdown arrow for better styling */
-    -moz-appearance: none;
-    appearance: none;
-    box-shadow: none; /* Removes the default shadow */
-}
-
-form .form-control:focus {
-    outline: none; /* Removes default focus outline */
-    border: 1px solid rgba(0, 0, 0, 0.3); /* Slightly darker border when focused */
-    background: rgba(255, 255, 255, 0.9); /* Slightly less transparent when focused */
-    color: #222; /* Text color */
-}
-
-form select.form-control {
-    background: rgba(255, 255, 255, 0.8); /* Ensure dropdown matches text input transparency */
-    color: #222; /* Text color */
-}
-
-form .form-control option {
-    background: rgba(255, 255, 255, 1); /* Solid white for dropdown options */
-    color: #222; /* Text color */
-}
-
 section#contact {
     background-color: #222;
     background-image: url('/img/backgrounds/contact-bg.jpg');
@@ -845,8 +815,18 @@ section#contact .form-group textarea {
     padding: 20px;
     border-radius: 5px; /* Optional: Rounded corners */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Adds a subtle shadow for readability */
-
 }
+
+section#contact .form-group select {
+    background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+    color: #222;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Adds a subtle shadow for readability */
+}
+
+section#contact .form-group select:invalid {
+    color: #bbb; /* Placeholder text color */
+}
+
 
 /* On focus */
 section#contact .form-group input:focus,
@@ -869,57 +849,52 @@ section#contact .section-heading {
 
 section#contact .form-group {
     margin-bottom: 25px;
-    color: #222; /* Text color */
 }
 
 section#contact .form-group input,
 section#contact .form-group textarea {
     padding: 20px;
-    color: #222; /* Text color */
 }
 
 section#contact .form-group input.form-control {
-    height: auto;
-    color: #222; /* Text color */
+    height: 50px;
 }
 
 section#contact .form-group textarea.form-control {
-    height: 157px;
-    color: #222; /* Text color */
+    height: 120px;
 }
 
 section#contact .form-control:focus {
     border-color: #{{ site.data.template.color.primary }};
     box-shadow: none;
-    color: #222; /* Text color */
 }
 
 section#contact::-webkit-input-placeholder {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #222; /* Text color */
+    color: #bbb;
 }
 
 section#contact:-moz-placeholder {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #222; /* Text color */
+    color: #bbb;
 }
 
 section#contact::-moz-placeholder {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #222; /* Text color */
+    color: #bbb;
 }
 
 section#contact:-ms-input-placeholder {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #222; /* Text color */
+    color: #bbb;
 }
 
 section#contact .text-danger {
