@@ -1,0 +1,23 @@
+- name: Tyler
+  pic: 1
+  position: Best Man
+
+- name: Jack
+  pic: 2
+  position: Groomsmen
+
+- name: Andrew
+  pic: 3
+  position: Groomsmen
+
+- name: Ben
+  pic: 4
+  position: Groomsmen
+
+- name: Michael
+  pic: 5
+  position: Groomsmen
+
+- name: Caleb
+  pic: 6
+  position: Groomsmen

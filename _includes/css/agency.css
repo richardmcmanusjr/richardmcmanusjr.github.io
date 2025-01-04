@@ -1047,6 +1047,10 @@ body {
     webkit-tap-highlight-color: #{{ site.data.template.color.primary }};
 }
 
+.no-wrap{
+    white-space: nowrap;
+}
+
 #travel .section-heading{
     align-items: center; /* Centers content horizontally */
     text-align: center;
