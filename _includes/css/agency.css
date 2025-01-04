@@ -824,7 +824,7 @@ section#contact .form-group select {
 }
 
 section#contact .form-group select:invalid {
-    color: #bbb; /* Placeholder text color */
+    color: #{{ site.data.template.color.primary }};;
 }
 
 
