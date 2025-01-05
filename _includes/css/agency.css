@@ -328,6 +328,14 @@ fieldset[disabled] .btn-m.active {
     color: #{{ site.data.template.color.secondary }};
 }
 
+.orange-line {
+    width: 100px; /* Adjust width to your preference */
+    height: 3px; /* Thickness of the line */
+    background-color: #{{ site.data.template.color.primary }};
+    margin: 0 auto 20px; /* Centers the line and adds spacing */
+    border-radius: 2px; /* Rounds the edges slightly */
+}
+
 @media(min-width:768px) {
     .navbar-default {
         padding: 25px 0;
