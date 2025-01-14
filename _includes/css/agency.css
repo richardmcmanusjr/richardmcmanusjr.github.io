@@ -236,6 +236,7 @@ fieldset[disabled] .btn-m.active {
     color: #{{ site.data.template.color.primary }};
     background-color: #fff;
 }
+
 .navbar-default {
     border-color: transparent;
     background-color: #222;
