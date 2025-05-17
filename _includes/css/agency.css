@@ -4,6 +4,8 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+---
+---
 
 body {
     overflow-x: hidden;
@@ -92,6 +94,7 @@ h6 {
     font-weight: 700;
     color: #fff;
     background-color: #{{ site.data.template.color.primary }};
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 
 .btn-primary:hover,
@@ -99,7 +102,7 @@ h6 {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    border-color: #{{ site.data.template.color.primary }};
+    border: none
     color: #fff;
     background-color: #{{ site.data.template.color.secondary }};
 }
@@ -144,6 +147,7 @@ fieldset[disabled] .btn-primary.active {
     font-weight: 700;
     color: #fff;
     background-color: #{{ site.data.template.color.primary }};
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 
 .btn-xl:hover,
@@ -151,9 +155,10 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    border-color: #{{ site.data.template.color.primary }};
+    border-color: #{{ site.data.template.color.secondary }};
     color: #fff;
-    background-color: #{{ site.data.template.color.secondary }};
+    background-color: rgba({{ site.data.template.color.secondary | hex_to_rgb | join: ',' }}, 0.9);
+
 }
 
 .btn-xl:active,
@@ -196,6 +201,7 @@ fieldset[disabled] .btn-xl.active {
     font-weight: 700;
     color: #fff;
     background-color: #{{ site.data.template.color.primary }};
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 
 .btn-m:hover,
@@ -518,8 +524,7 @@ section h3.light-contrast {
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
     transition: all ease .5s;
-    background: rgba(254,209,54,.9); /* Fallback when no plugin support */
-    background: rgba({{ site.data.template.color.primary | hex_to_rgb | join: ',' }}, .9);
+    background: rgba({{ site.data.template.color.primary | hex_to_rgb | join: ',' }}, 0.5);
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
@@ -806,6 +811,18 @@ aside.clients img {
     margin: 50px auto;
 }
 
+::placeholder {
+  color: #777 !important;
+  opacity: 1; /* Ensures it's not faded */
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: #777 !important;
+  opacity: 1;
+}
+
 section#contact {
     background-color: #222;
     background-image: url('/img/backgrounds/contact-bg.jpg');
@@ -882,30 +899,26 @@ section#contact .form-control:focus {
 
 section#contact::-webkit-input-placeholder {
     text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #bbb;
+    color: #444;
 }
 
 section#contact:-moz-placeholder {
     text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #bbb;
+    color: #444;
 }
 
 section#contact::-moz-placeholder {
     text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #bbb;
+    color: #444;
 }
 
 section#contact:-ms-input-placeholder {
     text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
     font-weight: 700;
-    color: #bbb;
+    color: #444;
 }
 
 section#contact .text-danger {
