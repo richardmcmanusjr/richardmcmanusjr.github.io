@@ -63,28 +63,6 @@
 </section>
 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script>
-    $(function(){
-    $(".ajaxForm").submit(function(e){
-        e.preventDefault();
-        var href = $(this).attr("action");
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: href,
-            data: $(this).serialize(),
-            success: function(response){
-                if(response.status == "success"){
-                    alert('Thank you for your RSVP!');
-                    window.location.href = 'https://richardandannaswedding.com';
-                }else{
-                    alert("An error occured: " + response.message);
-                }
-            }
-        });
-    });
-    });
-</script>
 <section id="contact">
     <div class="container">
         <div class="row">
@@ -93,47 +71,182 @@
                 <h3 class="section-subheading light-contrast">Let us know if you plan to attend! You can also reach us at <a class="light-contrast" href="mailto:richardandannamcmanus@gmail.com">richardandannamcmanus@gmail.com</a>.</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <form class="ajaxForm" action="https://formcarry.com/s/gAdaMdPafwT" method="POST">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="control-group form-group">
-                                <input type="text" class="form-control" placeholder="Your Name" id="name" name="name" required data-validation-required-message="Please enter your name.">
-                                <p class="help-block text-danger"></p>
+        <form class="ajaxForm" action="https://script.google.com/macros/s/AKfycbwmPHpgnddE9u-N4LTZUv--qPmo6HZqkw0jgau9k_43RyCUkW79p0G6jsv2ai6yj8B_tw/exec" method="POST">
+            <input type="hidden" name="token" value="v6q9dJ9xb1!r#7ZpR82Lpq">
+            <div class="row">
+                <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="control-group form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name" id="name" name="name" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email" id="email" name="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group form-group">
+                                    <select class="form-control" id="attendance" name="attendance" required>
+                                        <option value="">Will you be attending?</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                            <div class="control-group form-group">
-                                <input type="email" class="form-control" placeholder="Your Email" id="email" name="email" required data-validation-required-message="Please enter your email address.">
-                                <p class="help-block text-danger"></p>
+                            <div class="col-md-6">
+                                <div class="control-group form-group">
+                                    <input type="number" class="form-control" placeholder="Additional Guests?" id="guests" name="guests" min="0" max="10" required>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group form-group">
+                                    <textarea class="form-control" placeholder="Your Message (Optional)" id="message" name="message"></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                            <div class="control-group form-group">
-                                <select class="form-control" id="attendance" name="attendance" required>
-                                    <option value="">Will you be attending?</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="control-group form-group">
-                                <input type="number" class="form-control" placeholder="Head Count" id="headcount" name="headcount" min="1" max="10" required data-validation-required-message="Please enter the number of attendees.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group form-group">
-                                <textarea class="form-control" placeholder="Your Message (Optional)" id="message" name="message"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
                         <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Submit RSVP</button>
-                        </div>
                     </div>
-                </form>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="control-group form-group" id="guest-details-wrapper" style="display: none;">
+                    <div id="guest-details-container" class="container-fluid">
+                        <!-- JS will populate entries here -->
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div id="success"></div>
+                    <button type="submit" class="btn btn-xl">Submit RSVP</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>
+<!-- Loading overlay -->
+<div id="loading-overlay">
+  <div class="spinner"></div>
+</div>
 
+<script>
+$(function () {
+    function getExistingGuestData() {
+        const data = {};
+        $(".guest-entry").each(function (i) {
+            const guestIndex = i + 1;
+            const name = $(this).find(`[name="guest_${guestIndex}_name"]`).val() || "";
+            const meal = $(this).find(`[name="guest_${guestIndex}_meal"]`).val() || "";
+            data[guestIndex] = { name, meal };
+        });
+        return data;
+    }
+
+    function updateGuestFields() {
+        const isAttending = $("#attendance").val() === "Yes";
+        const additionalGuests = parseInt($("#guests").val()) || 0;
+        const totalGuests = isAttending ? additionalGuests + 1 : 0;
+
+        const guestContainer = $("#guest-details-container");
+        const guestWrapper = $("#guest-details-wrapper");
+
+        if (!isAttending) {
+            guestWrapper.hide();
+            guestContainer.empty();
+            return;
+        }
+
+        guestWrapper.show();
+        const cachedData = getExistingGuestData();
+        const currentGuestCount = $(".guest-entry").length;
+
+        // Adjust field count
+        if (currentGuestCount < totalGuests) {
+            for (let i = currentGuestCount + 1; i <= totalGuests; i++) {
+                const guestNameInputID = `guest_${i}_name_input`;
+                const mealSelectID = `guest_${i}_meal_select`;
+
+                guestContainer.append(`
+                    <div class="guest-entry row">
+                        <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control guest-name-input" id="${guestNameInputID}" name="guest_${i}_name" placeholder="Guest ${i} Name" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                        <select class="form-control guest-meal-select" id="${mealSelectID}" name="guest_${i}_meal" required>
+                            <option value="" disabled selected hidden>Select meal for Guest ${i}</option>
+                            <option value="Steak">Char Grilled Filet Mignon</option>
+                            <option value="Chicken">Chicken Cordon Bleu</option>
+                            <option value="Other">Other (Dietary Restrictions) – Please provide details in the message box</option>
+                        </select>
+                        </div>
+                    </div>
+                `);
+
+
+
+
+                // Live update label for dropdown
+                $(document).on("input", `#${guestNameInputID}`, function () {
+                    const name = $(this).val().trim() || `Guest ${i}`;
+                    $(`#${mealSelectID} option:first`).text(`Select meal for ${name}`);
+                });
+            }
+        } else if (currentGuestCount > totalGuests) {
+            $(".guest-entry").slice(totalGuests).remove();
+        }
+
+        // Restore cached input values
+        for (let i = 1; i <= totalGuests; i++) {
+            const entry = cachedData[i] || {};
+            $(`[name="guest_${i}_name"]`).val(entry.name || "");
+            $(`[name="guest_${i}_meal"]`).val(entry.meal || "");
+
+            if (entry.name) {
+                $(`#guest_${i}_meal_select option:first`).text(`Select meal for ${entry.name}`);
+            }
+        }
+
+        // If guest 1's name field exists, auto-fill from main name input
+        const mainName = $("#name").val().trim();
+        if (mainName) {
+            const $firstName = $(`[name="guest_1_name"]`);
+            if ($firstName.length > 0) {
+                $firstName.val(mainName);
+                $(`#guest_1_meal_select option:first`).text(`Select meal for ${mainName}`);
+            }
+        }
+    }
+
+    $("#attendance, #guests, #name").on("change input", updateGuestFields);
+
+    $(".ajaxForm").submit(function(e){
+        e.preventDefault();
+        var href = $(this).attr("action");
+
+        // Show the loading overlay
+        $("#loading-overlay").css("display", "flex");
+
+        $.ajax({
+            type: "POST",
+            url: href,
+            data: $(this).serialize(),
+            success: function(response){
+                $("#loading-overlay").hide();
+                alert("Thank you for your RSVP!");
+                window.location.href = "https://richardandannaswedding.com";
+            },
+            error: function(){
+                $("#loading-overlay").hide();
+                alert("An error occurred while submitting the form.");
+            }
+        });
+
+        return false;
+    });
+
+
+
+    // Initial load
+    updateGuestFields();
+});
+</script>
