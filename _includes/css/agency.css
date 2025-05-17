@@ -155,10 +155,9 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    border-color: #{{ site.data.template.color.secondary }};
+    border-color: #214d6e;
     color: #fff;
-    background-color: rgba({{ site.data.template.color.secondary | hex_to_rgb | join: ',' }}, 0.9);
-
+    background-color: rgba(33, 77, 110, 0.9); /* 0.9 alpha of #f58f71 */
 }
 
 .btn-xl:active,
@@ -319,12 +318,12 @@ fieldset[disabled] .btn-m.active {
     font-family: "stay_classy_sldtregular","Helvetica Neue",Helvetica,Arial,cursive;
     color: #{{ site.data.template.color.primary }};
     font-size: 2.5em;
-}
-
-.brand {
+    transition: all ease .35s;
     padding-top: 100px;
     text-decoration: none;
+
 }
+
 
 .brand:hover,
 .brand:active {
@@ -524,7 +523,7 @@ section h3.light-contrast {
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
     transition: all ease .5s;
-    background: rgba({{ site.data.template.color.primary | hex_to_rgb | join: ',' }}, 0.5);
+    background: rgba(245, 143, 113, 0.5)
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
