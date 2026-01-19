@@ -1,3 +1,239 @@
----
-layout: en_default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard McManus - EECS PhD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Richard McManus</a>
+            <button class="menu-button" id="menuButton" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#life">Life</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="background-image: url('hero-image.png');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Richard McManus</h1>
+            <p class="subtitle">EECS PhD Student @ UC Berkeley</p>
+            <p class="tagline">Trying to make the fastest transistor ever <a href="running.html">(and be the fastest device physicist ever??)</a></p>
+            <a href="#about" class="cta-button">Explore</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <a href="#research" class="about-card">
+                    <div class="emoji">🔬</div>
+                    <h3>Research</h3>
+                    <p>Semiconductor devices... these things are small.</p>
+                </a>
+                <a href="running.html" class="about-card">
+                    <div class="emoji">🏃</div>
+                    <h3>Fitness</h3>
+                    <p>I might have a healthy addiction to running and lifting.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <h2>Research & Interests</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="card-icon">💾</div>
+                    <h3>Scaled Silicon MOSFETs</h3>
+                    <p>Ultra-thin-body / SOI scaling, parasitics, and chasing better f<sub>T</sub>/f<sub>MAX</sub>.</p>
+                    <img src="AirSpacerTestStructure2.png" alt="Air Spacer Test Structure" class="research-card-media">
+                </div>
+                <div class="research-card">
+                    <div class="card-icon">💥</div>
+                    <h3>Radiation Detection</h3>
+                    <p>What a gamma does in silicon and how to read out a tiny, fast charge packet.</p>
+                    <img src="radiation.png" alt="Radiation" class="research-card-media">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="cv" class="publications">
+        <div class="container">
+            <h2>CV & Publications</h2>
+            <div class="cv-content">
+                <div class="cv-section">
+                    <h3>Education</h3>
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h4>PhD, EECS</h4>
+                            <span class="year">UC Berkeley</span>
+                        </div>
+                        <p>Scaled semiconductor devices - how can we make computing faster, more efficient, and more resilient?</p>
+                    </div>
+
+                    <a target="_blank" href="https://fightingfor.nd.edu/stories/commencement-2024/richard-mcmanus/" class="cv-item cv-item-link">
+                        <div class="cv-header">
+                            <h4>B.S., Electrical Engineering</h4>
+                            <span class="year">University of Notre Dame, 2024</span>
+                        </div>
+                        <p>Where I learned to love device physics and the research process.</p>
+                    </a>
+                </div>
+
+                <div class="cv-section">
+                    <h3>Publications</h3>
+                    <a target="_blank" href="https://doi.org/10.1016/j.ijrobp.2025.07.1382" class="cv-item cv-item-link">
+                        <div class="cv-header">
+                            <h4>ASTRO 2025</h4>
+                            <span class="year">2025</span>
+                        </div>
+                        <p>Enabling Continuous Monitoring of 225Ac-Based Targeted Alpha Therapy Biodistribution via Energy Calibration of a Wearable γ-Spectrometer</p>
+                    </a>
+                    <a target="_blank" href="https://doi.org/10.1116/6.0004052" class="cv-item cv-item-link">
+                        <div class="cv-header">
+                            <h4>Journal of Vacuum Science & Technology B</h4>
+                            <span class="year">2024</span>
+                        </div>
+                        <p>Overcoming challenges in single electron charge detection of nanoscale dipoles</p>
+                    </a>
+                </div>
+
+                <div class="cv-section">
+                    <h3>Teaching Experience</h3>
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h4>Integrated Circuit Devices</h4>
+                            <span class="year">UC Berkeley, 2026</span>
+                        </div>
+                        <p>Lecturer: Professor Asir Khan</p>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h4>Fundamentals of Semiconductors</h4>
+                            <span class="year">University of Notre Dame, 2024</span>
+                        </div>
+                        <p>Lecturer: Professor Kai Ni</p>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h4>Digital Integrated Circuits</h4>
+                            <span class="year">University of Notre Dame, 2023</span>
+                        </div>
+                        <p>Lecturer: Professor Matthew Morrisonß</p>
+                    </div>
+                <div class="cv-section">
+                    <h3>Industry Experience</h3>
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h4>Environmental Test Engineering Intern</h4>
+                            <span class="year">Boeing, 2023</span>
+                        </div>
+                        <p>Labs: Airflow, Thermal, Vibration, Arc Heater, etc.</p>
+                    </div>
+                    <a target="_blank" href="https://ideacenter.nd.edu/se/opportunities/race-to-revenue/2021-racer-cohort/richard-mcmanus-mound-power/" class="cv-item cv-item-link">
+                        <div class="cv-header">
+                            <h4>CEO and Chief Engineer</h4>
+                            <span class="year">Mound Power, LLC, 2020-2024</span>
+                        </div>
+                        <p>Developed and patented multi-axis force-measurement platform utilized by major league baseball teams.</p>
+                    </a>
+                </div>
+                <div class="cv-download">
+                    <!-- Replace with your actual file path -->
+                    <a target="_blank" href="McManus_Richard_CV.pdf" class="download-button">📄 Download Full CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life Section - Personal Interests -->
+    <section id="life" class="life">
+        <div class="container">
+            <h2>Outside the Lab</h2>
+            <div class="life-grid">
+                <a href="running.html" class="life-card life-card-link">
+                    <div class="life-emoji">🏃‍♂️</div>
+                    <h3>Running</h3>
+                    <p>Training around the Bay. Berkeley hills are no joke.</p>
+                    <video class="life-card-media" autoplay muted loop playsinline>
+                        <source src="running.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <div class="life-card">
+                    <div class="life-emoji">🥾</div>
+                    <h3>Hiking</h3>
+                    <p>Trying to knock off 14ers one at a time.</p>
+                    <video class="life-card-media" autoplay muted loop playsinline>
+                        <source src="hiking.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="life-card">
+                    <div class="life-emoji">💪</div>
+                    <h3>Lifting</h3>
+                    <p>Picking things up and putting them back down.</p>
+                    <video class="life-card-media" autoplay muted loop playsinline>
+                        <source src="weightlifting.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="life-card">
+                    <div class="life-emoji">🏄</div>
+                    <h3>Water Sports</h3>
+                    <p>Efoil, skimboard, surf, you name it.</p>
+                    <video class="life-card-media" autoplay muted loop playsinline>
+                        <source src="efoil.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <p>Want to talk devices or hitting PRs? I’m in.</p>
+                <div class="contact-links">
+                    <!-- Replace placeholders with your real links -->
+                    <a target="_blank" href="mailto:mcmanus@berkeley.edu" class="contact-button">📧 Email</a>
+                    <a target="_blank" href="https://www.linkedin.com/in/richard-mcmanus-jr/" class="contact-button">💼 LinkedIn</a>
+                    <a target="_blank" href="https://github.com/richardmcmanusjr" class="contact-button">🐙 GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Richard McManus. Built with ⚡ and ☕</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
