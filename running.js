@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Desktop hover events
         history.addEventListener('mouseenter', showPopup);
-        history.addEventListener('mouseleave', hidePopup);
+        history.addEventListener('mouseleave', scheduleHide);
         
         // Focus/blur for keyboard navigation
         history.addEventListener('focus', showPopup);
@@ -532,11 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const topPx = lineTop + (frac * lineRectV.height);
             
             // Center the now marker on the timeline's horizontal center
-            const timelineCenterX = timelineRectV.width / 2;
-            
             timelineNow.style.top = `${topPx}px`;
-            timelineNow.style.left = `${timelineCenterX}px`;
-            timelineNow.style.transform = 'translate(-50%, -50%)';
             timelineNow.style.left = `50%`;
             timelineNow.style.transform = 'translate(-50%, -50%)';
 
