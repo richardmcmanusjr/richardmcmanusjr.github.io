@@ -1104,6 +1104,7 @@ section::after {
         flex-direction: column;
         text-align: center;
         min-height: auto;
+        background-attachment: scroll;
     }
 
     .about h2,
