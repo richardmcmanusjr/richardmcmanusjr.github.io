@@ -1,3 +1,39 @@
+// Video loading state management
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.hero-video');
+    const loadingOverlay = document.getElementById('heroLoadingOverlay');
+    let videosReady = 0;
+    const totalVideos = videos.length;
+    
+    function checkAllVideosReady() {
+        if (videosReady === totalVideos && loadingOverlay) {
+            // All videos are ready, hide the loading overlay
+            loadingOverlay.classList.add('loaded');
+        }
+    }
+    
+    videos.forEach((video) => {
+        // Mark video as ready when it can play
+        video.addEventListener('canplay', () => {
+            videosReady++;
+            checkAllVideosReady();
+        }, { once: true });
+        
+        // Also check if video is already playing
+        if (video.readyState >= 2) {
+            videosReady++;
+            checkAllVideosReady();
+        }
+    });
+    
+    // Fallback: hide loading after max time to ensure page remains functional
+    setTimeout(() => {
+        if (loadingOverlay && !loadingOverlay.classList.contains('loaded')) {
+            loadingOverlay.classList.add('loaded');
+        }
+    }, 5000);
+});
+
 // Mobile coach image blur/focus on scroll
 document.addEventListener('DOMContentLoaded', () => {
     function isMobile() {
