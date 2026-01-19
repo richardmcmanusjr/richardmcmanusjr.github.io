@@ -521,18 +521,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const minHeight = Math.max(320, Math.round(window.innerHeight * 0.6));
             timeline.style.minHeight = `${minHeight}px`;
 
-            // Force reflow to ensure minHeight is applied before measuring
+            // Force multiple reflows to ensure layout is complete
+            void timeline.offsetHeight;
+            void timeline.getBoundingClientRect();
             void timeline.offsetHeight;
 
-            // DO NOT position the now marker on mobile - let CSS handle it for consistency
-            // This ensures it stays centered on refresh and page load
-            
             // recompute rects after ensuring height
             const lineRectV = timelineLine.getBoundingClientRect();
             const timelineRectV = timeline.getBoundingClientRect();
 
             const lineTop = lineRectV.top - timelineRectV.top;
-            const lineHeight = lineRectV.height;
+            let lineHeight = lineRectV.height;
+            
+            // If lineHeight is still 0, use a sensible fallback based on timeline height
+            if (lineHeight === 0 || lineHeight < 10) {
+                lineHeight = timelineRectV.height - 40; // Account for padding
+            }
             
             // Position each event absolutely along the vertical line, alternating left/right
             items.forEach((itemObj, index) => {
