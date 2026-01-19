@@ -528,11 +528,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const lineRectV = timelineLine.getBoundingClientRect();
             const timelineRectV = timeline.getBoundingClientRect();
 
+            // Calculate top position as percentage of timeline height for consistency across refreshes
             const lineTop = lineRectV.top - timelineRectV.top;
-            const topPx = lineTop + (frac * lineRectV.height);
+            const timelineHeight = timelineRectV.height;
+            const topPercent = timelineHeight > 0 ? ((lineTop + (frac * lineRectV.height)) / timelineHeight) * 100 : 50;
             
-            // Center the now marker on the timeline's horizontal center
-            timelineNow.style.top = `${topPx}px`;
+            // Use percentage-based positioning for mobile to avoid refresh timing issues
+            timelineNow.style.top = `${topPercent}%`;
             timelineNow.style.left = `50%`;
             timelineNow.style.transform = 'translate(-50%, -50%)';
 
