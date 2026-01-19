@@ -521,13 +521,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const minHeight = Math.max(320, Math.round(window.innerHeight * 0.6));
             timeline.style.minHeight = `${minHeight}px`;
 
+            // Force reflow to ensure minHeight is applied before measuring
+            void timeline.offsetHeight;
+
             // recompute rects after ensuring height
             const lineRectV = timelineLine.getBoundingClientRect();
             const timelineRectV = timeline.getBoundingClientRect();
 
             const lineTop = lineRectV.top - timelineRectV.top;
+            const lineLeft = lineRectV.left - timelineRectV.left;
             const topPx = lineTop + (frac * lineRectV.height);
             timelineNow.style.top = `${topPx}px`;
+            timelineNow.style.left = `${lineLeft + lineRectV.width / 2}px`;
+            timelineNow.style.transform = 'translate(-50%, -50%)';
             timelineNow.style.left = `50%`;
             timelineNow.style.transform = 'translate(-50%, -50%)';
 
