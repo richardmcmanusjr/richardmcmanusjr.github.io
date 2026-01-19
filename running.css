@@ -1390,7 +1390,7 @@ body {
 }
 
 
-.timeline-card .race-name { margin-bottom: 0.25rem; }
+.timeline-card .race-name { margin-bottom: 0.25rem; color: var(--accent-gold); }
 .timeline-card .race-time,
 .timeline-card .race-goal { font-size: 1.25rem; margin-bottom: 0.25rem; }
 
@@ -1512,26 +1512,66 @@ body {
         max-width: none;
         height: auto;
         width: 100%;
-        padding: 1rem 1rem;
+        padding: 0.75rem 0.75rem;
         --base-shift: 0px !important;
         --shift: 0px !important;
         transform: none !important;
         transition: box-shadow 260ms cubic-bezier(.2,.9,.2,1);
+        font-size: 0.7rem;
+        border-radius: 10px;
+        border: 1px solid rgba(212,175,55,0.08);
+        text-align: center;
     }
-
-    /* Allow event name to wrap on mobile */
+    
     .timeline-card .race-name {
+        font-size: 0.8rem;
+        margin-bottom: 0.08rem;
         white-space: normal;
         overflow: visible;
         text-overflow: unset;
         word-break: break-word;
-        hyphens: auto;
-        }
+        font-weight: 700;
+        color: var(--accent-gold);
+    }
     
+    .timeline-card .race-date {
+        font-size: 0.65rem;
+        margin-bottom: 0.06rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+    
+    .timeline-card .race-time,
+    .timeline-card .race-goal {
+        font-size: 0.75rem;
+        margin-bottom: 0.06rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+    
+    .timeline-card .race-distance {
+        font-size: 0.6rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+
     /* Reset hover effects on mobile since cards won't translate */
     .timeline-item.above:hover .timeline-card,
     .timeline-item.below:hover .timeline-card {
         --shift: 0px !important;
+    }
+    
+    .timeline-item.past .timeline-card {
+        border-color: rgba(212,175,55,0.35);
+        background: rgba(212,175,55,0.04);
+    }
+    
+    .timeline-item.future .timeline-card {
+        border-color: rgba(0,0,0,0.08);
+        background: rgba(0,0,0,0.02);
     }
 
 @media (max-width: 768px) {
@@ -1685,20 +1725,60 @@ body {
 
     .timeline-item {
         width: calc(50% - 60px);
-        padding: 0 1rem;
+        padding: 0 0.5rem;
     }
 
     .timeline-card {
-        font-size: 0.9rem;
+        font-size: 0.65rem;
+        padding: 0.6rem 0.6rem;
+        border-radius: 10px;
+        border: 1px solid rgba(212,175,55,0.08);
+        text-align: center;
     }
-
-    /* Allow event name to wrap on mobile */
+    
     .timeline-card .race-name {
+        font-size: 0.75rem;
+        margin-bottom: 0.08rem;
         white-space: normal;
         overflow: visible;
         text-overflow: unset;
         word-break: break-word;
-        hyphens: auto;
+        font-weight: 700;
+        color: var(--accent-gold);
+    }
+    
+    .timeline-card .race-date {
+        font-size: 0.6rem;
+        margin-bottom: 0.05rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+    
+    .timeline-card .race-time,
+    .timeline-card .race-goal {
+        font-size: 0.7rem;
+        margin-bottom: 0.05rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+    
+    .timeline-card .race-distance {
+        font-size: 0.55rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+    
+    .timeline-item.past .timeline-card {
+        border-color: rgba(212,175,55,0.35);
+        background: rgba(212,175,55,0.04);
+    }
+    
+    .timeline-item.future .timeline-card {
+        border-color: rgba(0,0,0,0.08);
+        background: rgba(0,0,0,0.02);
     }
 
     /* Mobile positioning for popups */
