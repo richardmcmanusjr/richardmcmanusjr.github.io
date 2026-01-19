@@ -524,25 +524,25 @@ document.addEventListener('DOMContentLoaded', () => {
             // Force reflow to ensure minHeight is applied before measuring
             void timeline.offsetHeight;
 
+            // For mobile, use CSS defaults instead of JS positioning to avoid timing issues
+            // Reset JS-set styles to let CSS media queries handle the positioning
+            timelineNow.style.top = '';
+            timelineNow.style.left = '';
+            timelineNow.style.transform = '';
+
             // recompute rects after ensuring height
             const lineRectV = timelineLine.getBoundingClientRect();
             const timelineRectV = timeline.getBoundingClientRect();
 
-            // Calculate top position as percentage of timeline height for consistency across refreshes
             const lineTop = lineRectV.top - timelineRectV.top;
             const timelineHeight = timelineRectV.height;
-            const topPercent = timelineHeight > 0 ? ((lineTop + (frac * lineRectV.height)) / timelineHeight) * 100 : 50;
+            const lineHeight = lineRectV.height;
             
-            // Use percentage-based positioning for mobile to avoid refresh timing issues
-            timelineNow.style.top = `${topPercent}%`;
-            timelineNow.style.left = `50%`;
-            timelineNow.style.transform = 'translate(-50%, -50%)';
-
             // Position each event absolutely along the vertical line, alternating left/right
             items.forEach((itemObj, index) => {
                 if (!itemObj.date) return;
                 const itemFrac = span > 0 ? (itemObj.date.getTime() - minDate.getTime()) / span : 0;
-                const itemTop = lineTop + (Math.max(0, Math.min(1, itemFrac)) * lineRectV.height);
+                const itemTop = lineTop + (Math.max(0, Math.min(1, itemFrac)) * lineHeight);
                 itemObj.el.style.position = 'absolute';
                 itemObj.el.style.top = `${itemTop}px`;
                 itemObj.el.style.transform = 'translateY(-50%)';
@@ -553,7 +553,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 itemObj.el.style.left = '';
                 itemObj.el.style.right = '';
             });
+            
+            return; // Don't position the now marker with JS on mobile - let CSS handle it
         }
+        
+        // If we get here and it's narrow, something went wrong - don't position
+        return;
     }
 
     // initial position and reflow listeners
