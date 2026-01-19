@@ -529,10 +529,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const timelineRectV = timeline.getBoundingClientRect();
 
             const lineTop = lineRectV.top - timelineRectV.top;
-            const lineLeft = lineRectV.left - timelineRectV.left;
             const topPx = lineTop + (frac * lineRectV.height);
+            
+            // Center the now marker on the timeline's horizontal center
+            const timelineCenterX = timelineRectV.width / 2;
+            
             timelineNow.style.top = `${topPx}px`;
-            timelineNow.style.left = `${lineLeft + lineRectV.width / 2}px`;
+            timelineNow.style.left = `${timelineCenterX}px`;
             timelineNow.style.transform = 'translate(-50%, -50%)';
             timelineNow.style.left = `50%`;
             timelineNow.style.transform = 'translate(-50%, -50%)';
