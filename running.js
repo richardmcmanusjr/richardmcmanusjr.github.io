@@ -76,58 +76,84 @@ document.addEventListener('DOMContentLoaded', () => {
         handleMobileCoachImage();
     }
 });
-// GOATCoach popup animation for 'history of speed' hover
+// GOATCoach popup animation for 'history of speed' hover and click
 document.addEventListener('DOMContentLoaded', () => {
     const history = document.querySelector('.history-of-speed');
     const popup = document.querySelector('.goatcoach-popup');
     if (history && popup) {
-        history.addEventListener('mouseenter', () => {
+        let hideTimeout;
+        
+        const showPopup = () => {
             popup.style.opacity = '1';
             popup.style.pointerEvents = 'auto';
             popup.style.transform = 'scale(1.1) rotate(0deg) translateY(-10px)';
-        });
-        history.addEventListener('mouseleave', () => {
+        };
+        
+        const hidePopup = () => {
             popup.style.opacity = '';
             popup.style.pointerEvents = '';
             popup.style.transform = '';
-        });
-        history.addEventListener('focus', () => {
-            popup.style.opacity = '1';
-            popup.style.pointerEvents = 'auto';
-            popup.style.transform = 'scale(1.1) rotate(0deg) translateY(-10px)';
-        });
-        history.addEventListener('blur', () => {
-            popup.style.opacity = '';
-            popup.style.pointerEvents = '';
-            popup.style.transform = '';
+        };
+        
+        const scheduleHide = () => {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(hidePopup, 3000);
+        };
+        
+        // Desktop hover events
+        history.addEventListener('mouseenter', showPopup);
+        history.addEventListener('mouseleave', hidePopup);
+        
+        // Focus/blur for keyboard navigation
+        history.addEventListener('focus', showPopup);
+        history.addEventListener('blur', hidePopup);
+        
+        // Mobile click/touch support - show for 3 seconds
+        history.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPopup();
+            scheduleHide();
         });
     }
 });
 
-// Charles popup animation for 'Charles the turkey' hover
+// Charles popup animation for 'Charles the turkey' hover and click
 document.addEventListener('DOMContentLoaded', () => {
     const charles = document.querySelector('.charles-turkey');
     const popup = document.querySelector('.charles-popup');
     if (charles && popup) {
-        charles.addEventListener('mouseenter', () => {
+        let hideTimeout;
+        
+        const showPopup = () => {
             popup.style.opacity = '1';
             popup.style.pointerEvents = 'auto';
             popup.style.transform = 'scale(1.1) rotate(0deg) translateY(-10px)';
-        });
-        charles.addEventListener('mouseleave', () => {
+        };
+        
+        const hidePopup = () => {
             popup.style.opacity = '';
             popup.style.pointerEvents = '';
             popup.style.transform = '';
-        });
-        charles.addEventListener('focus', () => {
-            popup.style.opacity = '1';
-            popup.style.pointerEvents = 'auto';
-            popup.style.transform = 'scale(1.1) rotate(0deg) translateY(-10px)';
-        });
-        charles.addEventListener('blur', () => {
-            popup.style.opacity = '';
-            popup.style.pointerEvents = '';
-            popup.style.transform = '';
+        };
+        
+        const scheduleHide = () => {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(hidePopup, 3000);
+        };
+        
+        // Desktop hover events
+        charles.addEventListener('mouseenter', showPopup);
+        charles.addEventListener('mouseleave', hidePopup);
+        
+        // Focus/blur for keyboard navigation
+        charles.addEventListener('focus', showPopup);
+        charles.addEventListener('blur', hidePopup);
+        
+        // Mobile click/touch support - show for 3 seconds
+        charles.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPopup();
+            scheduleHide();
         });
     }
 });
@@ -363,19 +389,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
     
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(20px)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.8)';
-            navbar.style.backdropFilter = 'blur(20px)';
-        }
-        
-        lastScroll = currentScroll;
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.8)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    }
 
     // Add micro-interactions to cards
     const cards = document.querySelectorAll('.stat-card, .record-card');

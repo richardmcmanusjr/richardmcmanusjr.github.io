@@ -1,3 +1,6 @@
+/* Equinox-Inspired Luxury Fitness Theme */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
 /* GOATCoach popup styles */
 .goatcoach-popup {
     position: absolute;
@@ -127,7 +130,6 @@
     transform: scale(1.1) rotate(0deg) translateY(-10px);
 }
 /* Equinox-Inspired Luxury Fitness Theme */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
 :root {
     --primary-white: #ffffff;
@@ -1332,7 +1334,7 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .timeline-now { left: 40px; transform: translateY(-50%); }
+    .timeline-now { left: 50%; transform: translate(-50%, -50%); }
     .now-label { 
         font-size: 0.95rem;
         writing-mode: vertical-lr;
@@ -1507,22 +1509,14 @@ body {
 
     .timeline-card {
         margin-top: 0;
-        transform: none; /* reset any above/below translate */
         max-width: none;
         height: auto;
-    }
-
-    /* ensure cards take full available width on mobile */
-    .timeline-card {
-        max-width: none;
         width: 100%;
         padding: 1rem 1rem;
-    }
-
-    /* ensure card placement resets on small screens */
-    .timeline-item.above .timeline-card,
-    .timeline-item.below .timeline-card {
-        transform: none;
+        --base-shift: 0px !important;
+        --shift: 0px !important;
+        transform: none !important;
+        transition: box-shadow 260ms cubic-bezier(.2,.9,.2,1);
     }
 
     /* Allow event name to wrap on mobile */
@@ -1533,6 +1527,12 @@ body {
         word-break: break-word;
         hyphens: auto;
         }
+    
+    /* Reset hover effects on mobile since cards won't translate */
+    .timeline-item.above:hover .timeline-card,
+    .timeline-item.below:hover .timeline-card {
+        --shift: 0px !important;
+    }
 
 @media (max-width: 768px) {
     /* Coach section mobile layout fix */
