@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Desktop hover events
         history.addEventListener('mouseenter', showPopup);
-        history.addEventListener('mouseleave', scheduleHide);
+        history.addEventListener('mouseleave', hidePopup);
         
         // Focus/blur for keyboard navigation
         history.addEventListener('focus', showPopup);
