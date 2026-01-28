@@ -1337,11 +1337,8 @@ body {
 }
 
 @media (max-width: 1024px) {
-    /* On mobile, marker stays fixed at center of timeline via CSS only - no JS positioning */
+    /* On mobile, marker is positioned by JS along the vertical timeline */
     .timeline-now {
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;
         flex-direction: column;
     }
     

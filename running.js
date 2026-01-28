@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Desktop hover events
         history.addEventListener('mouseenter', showPopup);
-        history.addEventListener('mouseleave', hidePopup);
+        history.addEventListener('mouseleave', scheduleHide);
         
         // Focus/blur for keyboard navigation
         history.addEventListener('focus', showPopup);
@@ -521,9 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const minHeight = Math.max(320, Math.round(window.innerHeight * 0.6));
             timeline.style.minHeight = `${minHeight}px`;
 
-            // Force multiple reflows to ensure layout is complete
-            void timeline.offsetHeight;
-            void timeline.getBoundingClientRect();
+            // Force reflow to ensure minHeight is applied before measuring
             void timeline.offsetHeight;
 
             // recompute rects after ensuring height
@@ -531,12 +529,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const timelineRectV = timeline.getBoundingClientRect();
 
             const lineTop = lineRectV.top - timelineRectV.top;
-            let lineHeight = lineRectV.height;
+            const lineHeight = lineRectV.height;
             
-            // If lineHeight is still 0, use a sensible fallback based on timeline height
-            if (lineHeight === 0 || lineHeight < 10) {
-                lineHeight = timelineRectV.height - 40; // Account for padding
-            }
+            // Position the "Now" marker along the vertical line
+            const nowFrac = span > 0 ? (now.getTime() - minDate.getTime()) / span : 0;
+            const nowTop = lineTop + (Math.max(0, Math.min(1, nowFrac)) * lineHeight);
+            timelineNow.style.position = 'absolute';
+            timelineNow.style.left = '50%';
+            timelineNow.style.top = `${nowTop}px`;
+            timelineNow.style.transform = 'translate(-50%, -50%)';
             
             // Position each event absolutely along the vertical line, alternating left/right
             items.forEach((itemObj, index) => {
