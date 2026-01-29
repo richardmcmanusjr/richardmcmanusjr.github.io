@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Activities - BAD Lab</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Preload activity images -->
+    <link rel="preload" as="image" href="content/Food1.png">
+    <link rel="preload" as="image" href="content/Sports1.png">
+    <link rel="preload" as="image" href="content/Barbecues1.png">
+    <link rel="preload" as="image" href="content/goofy1.png">
+    <!-- Image preloader script -->
+    <script src="image-preloader.js" defer></script>
+    <!-- Service worker registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').then(function(registration) {
+            console.log('Service Worker registered successfully:', registration);
+          }, function(error) {
+            console.log('Service Worker registration failed:', error);
+          });
+        });
+      }
+    </script>
     <script>
         const observerOptions = {
             threshold: 0.1,

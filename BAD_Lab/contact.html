@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - BAD Lab</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Image preloader script -->
+    <script src="image-preloader.js" defer></script>
+    <!-- Service worker registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').then(function(registration) {
+            console.log('Service Worker registered successfully:', registration);
+          }, function(error) {
+            console.log('Service Worker registration failed:', error);
+          });
+        });
+      }
+    </script>
     <script>
         const observerOptions = {
             threshold: 0.1,
