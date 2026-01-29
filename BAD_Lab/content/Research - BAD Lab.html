@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/research.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - BAD Lab</title>
+    <link rel="stylesheet" href="./Research - BAD Lab_files/styles.css">
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>BAD Lab</h1>
+                    <p class="tagline">Berkeley Advanced Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/index.html">Home</a></li>
+                    <li><a href="file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/research.html">Research</a></li>
+                    <li><a href="file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/team.html">Team</a></li>
+                    <li><a href="file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/activities.html">Activities</a></li>
+                    <li><a href="file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/publications.html">Publications</a></li>
+                    <li><a href="file:///Users/richardmcmanus/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/BAD_Lab/contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in fade-in-visible">
+                <p class="hero-overline">OUR WORK</p>
+                <h1 class="hero-title">Research</h1>
+                <p class="hero-tagline">Pushing the boundaries of physics and device engineering</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Focus -->
+    <section class="research-focus">
+        <div class="container">
+            <div class="section-header fade-in fade-in-visible">
+                <h2 class="section-title">What We Do</h2>
+                <p class="section-description">Three pillars of innovation in device engineering</p>
+            </div>
+            <div class="focus-grid">
+                <div class="focus-card fade-in fade-in-visible">
+                    <div class="focus-icon-wrapper">
+                        <img src="./Research - BAD Lab_files/icon-materials.png" alt="Advanced Materials &amp; Phenomena" class="focus-icon">
+                    </div>
+                    <h3>Advanced Materials &amp; Phenomena</h3>
+                    <p>Discovery and engineering of novel material systems—from ferroelectrics with negative capacitance to 2D heterostructures—with precisely engineered quantum and electronic properties</p>
+                </div>
+                <div class="focus-card fade-in fade-in-visible">
+                    <div class="focus-icon-wrapper">
+                        <img src="./Research - BAD Lab_files/icon-simulation.png" alt="Theory &amp; Simulation" class="focus-icon">
+                    </div>
+                    <h3>Theory &amp; Simulation</h3>
+                    <p>First-principles modeling and atomistic simulation to understand emerging physics, electron transport, and device physics at the nanoscale that drives innovation</p>
+                </div>
+                <div class="focus-card fade-in fade-in-visible">
+                    <div class="focus-icon-wrapper">
+                        <img src="./Research - BAD Lab_files/icon-engineering2.png" alt="Device Engineering &amp; Characterization" class="focus-icon">
+                        <img src="./Research - BAD Lab_files/icon-engineering.png" alt="Device Engineering &amp; Characterization" class="focus-icon">
+                    </div>
+                    <h3>Device Engineering &amp; Characterization</h3>
+                    <p>Precision nanofabrication, experimental validation, and characterization of prototype devices demonstrating breakthrough performance and enabling next-generation nanoelectronics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas -->
+    <section class="research-areas">
+        <div class="container">
+            <div class="section-header fade-in fade-in-visible">
+                <h2 class="section-title">Research Frontiers</h2>
+                <p class="section-description">Where physics meets device innovation</p>
+            </div>
+            <div class="areas-grid">
+                <div class="area-item fade-in fade-in-visible">
+                    <div class="area-number">01</div>
+                    <h3>Negative Capacitance</h3>
+                    <p>Pioneering work on negative capacitance phenomena in ferroelectric and ferrimagnetic materials for ultra-low power electronics and enhanced device performance</p>
+                </div>
+                <div class="area-item fade-in fade-in-visible">
+                    <div class="area-number">02</div>
+                    <h3>Ferroelectric &amp; Multiferroic Materials</h3>
+                    <p>Exploring ferroelectric materials for memory and logic applications with superior energy efficiency and unprecedented switching speeds</p>
+                </div>
+                <div class="area-item fade-in fade-in-visible">
+                    <div class="area-number">03</div>
+                    <h3>Electron Device Physics</h3>
+                    <p>Investigating fundamental physics of electron transport and quantum phenomena in nanostructured materials for next-generation nanoelectronics</p>
+                </div>
+                <div class="area-item fade-in fade-in-visible">
+                    <div class="area-number">04</div>
+                    <h3>2D Materials &amp; Heterostructures</h3>
+                    <p>Engineering atomically-thin materials with unique electronic and optical properties. The platform for future nanoelectronics and low-dimensional physics</p>
+                </div>
+                <div class="area-item fade-in fade-in-visible">
+                    <div class="area-number">05</div>
+                    <h3>Spin Phenomena &amp; Magnetics</h3>
+                    <p>Harnessing spin-orbit torques and magnetic phenomena for low-power computing devices with fundamentally new physics</p>
+                </div>
+                <div class="area-item fade-in fade-in-visible">
+                    <div class="area-number">06</div>
+                    <h3>Beyond-CMOS Logic &amp; Memory</h3>
+                    <p>Developing alternative computing paradigms including neuromorphic, quantum, and flexible electronics for energy-efficient information processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Berkeley Advanced Devices Lab. Part of UC Berkeley EECS Department.</p>
+            <div class="footer-links">
+                <a href="https://www.berkeley.edu/">Berkeley</a>
+                <a href="https://eecs.berkeley.edu/">EECS Department</a>
+                <a href="https://leed.eecs.berkeley.edu/">LEED Legacy Site</a>
+            </div>
+        </div>
+    </footer>
+
+
+</body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - BAD Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Setup card expansion functionality
+            setupCardExpansion();
+        });
+
+        function setupCardExpansion() {
+            const cards = document.querySelectorAll('.focus-card');
+            cards.forEach(card => {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const cardIndex = Array.from(cards).indexOf(this);
+                    expandCard(cardIndex);
+                });
+            });
+        }
+
+        function expandCard(index) {
+            const overlay = document.createElement('div');
+            overlay.className = 'expansion-overlay';
+            
+            const expandedContent = [
+                {
+                    title: 'Advanced Materials & Phenomena',
+                    icon: 'content/icon-materials.png',
+                    description: 'Discovery and engineering of novel material systems — from ferroelectrics, negative capacitance, and heterostructures—with precisely engineered quantum and electronic properties',
+                    details: [
+                        'Ferroelectric and antiferroelectric materials with engineered switching kinetics',
+                        'Negative capacitance phenomena for ultra-steep subthreshold switching',
+                        'Van der Waals heterostructures and 2D material systems',
+                        'Strain engineering and interface control at the nanoscale',
+                        'Quantum and transport phenomena in low-dimensional systems'
+                    ]
+                },
+                {
+                    title: 'Theory & Simulation',
+                    icon: 'content/icon-simulation.png',
+                    description: 'First-principles modeling and atomistic simulation to understand emerging physics, electron transport, and device physics at the nanoscale that drives innovation',
+                    details: [
+                        'Density functional theory (DFT) calculations of material properties',
+                        'Molecular dynamics simulations of ferroelectric switching',
+                        'Monte Carlo and Boltzmann transport calculations',
+                        'Multi-scale modeling from atomistic to device level',
+                        'Band structure engineering and electronic property prediction'
+                    ]
+                },
+                {
+                    title: 'Device Engineering & Characterization',
+                    icon: 'content/icon-engineering.png',
+                    description: 'Precision nanofabrication, experimental validation, and characterization of prototype devices demonstrating breakthrough performance',
+                    details: [
+                        'Thin film deposition: sputtering, MBE, ALD, and CVD',
+                        'Nanofabrication: lithography, etching, and patterning',
+                        'Electrical characterization: C-V, I-V, and dynamic measurements',
+                        'Advanced microscopy: TEM, SEM, and scanning probe techniques',
+                        'Device testing at cryogenic and elevated temperatures'
+                    ]
+                },
+                    {
+                    title: 'Unconventional Computing',
+                    icon: 'content/icon-computing.png',
+                    description: 'Exploring novel computing paradigms for high-performance, energy-efficient information processing',
+                    details: [
+                        'Neuromorphic computing architectures',
+                        'Quantum computing device concepts',
+                        'Flexible and wearable electronics',
+                        'Stochastic and probabilistic computing models',
+                        'Integration of novel devices into computing systems'
+                    ]
+                }
+            ];
+
+            const content = expandedContent[index];
+            overlay.innerHTML = `
+                <div class="expansion-modal">
+                    <button class="close-button">&times;</button>
+                    <div class="modal-content">
+                        <div class="modal-icon-wrapper">
+                            <img src="${content.icon}" alt="${content.title}" class="modal-icon">
+                        </div>
+                        <h2>${content.title}</h2>
+                        <p class="modal-description">${content.description}</p>
+                        <h3>Key Focus Areas:</h3>
+                        <ul class="modal-details">
+                            ${content.details.map(detail => `<li>${detail}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            // Close button functionality
+            overlay.querySelector('.close-button').addEventListener('click', function() {
+                overlay.remove();
+            });
+
+            // Close on overlay click
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && document.body.contains(overlay)) {
+                    overlay.remove();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>BAD Lab</h1>
+                    <p class="tagline">Berkeley Advanced Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <p class="hero-overline">OUR WORK</p>
+                <h1 class="hero-title">Research</h1>
+                <p class="hero-tagline">Pushing the boundaries of physics and device engineering</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Focus -->
+    <section class="research-focus">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">What We Do</h2>
+                <p class="section-description">Three pillars of innovation in device engineering</p>
+            </div>
+            <div class="focus-grid">
+                <div class="focus-card fade-in">
+                    <div class="focus-icon-wrapper">
+                        <img src="content/icon-materials.png" alt="Advanced Materials & Phenomena" class="focus-icon">
+                    </div>
+                    <h3>Advanced Materials & Phenomena</h3>
+                    <p>Discovery and engineering of novel material systems — from ferroelectrics, negative capacitance, andheterostructures—with precisely engineered quantum and electronic properties</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon-wrapper">
+                        <img src="content/icon-simulation.png" alt="Theory & Simulation" class="focus-icon">
+                    </div>
+                    <h3>Theory & Simulation</h3>
+                    <p>First-principles modeling and atomistic simulation to understand emerging physics, electron transport, and device physics at the nanoscale that drives innovation</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon-wrapper">
+                        <img src="content/icon-engineering2.png" alt="Device Engineering & Characterization" class="focus-icon">
+                        <img src="content/icon-engineering.png" alt="Device Engineering & Characterization" class="focus-icon">
+                    </div>
+                    <h3>Device Engineering & Characterization</h3>
+                    <p>Precision nanofabrication, experimental validation, and characterization of prototype devices demonstrating breakthrough performance</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon-wrapper">
+                        <img src="content/icon-computing.png" alt="Unconventional Computing" class="focus-icon">
+                    </div>
+                    <h3>Unconventional Computing</h3>
+                    <p>Exploring novel computing paradigms for high-performance, energy-efficient information processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas
+    <section class="research-areas">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Research Frontiers</h2>
+                <p class="section-description">Where physics meets device innovation</p>
+            </div>
+            <div class="areas-grid">
+                <div class="area-item fade-in">
+                    <div class="area-number">01</div>
+                    <h3>Negative Capacitance</h3>
+                    <p>Pioneering work on negative capacitance phenomena in ferroelectric and ferrimagnetic materials for ultra-low power electronics and enhanced device performance</p>
+                </div>
+                <div class="area-item fade-in">
+                    <div class="area-number">02</div>
+                    <h3>Ferroelectric & Multiferroic Materials</h3>
+                    <p>Exploring ferroelectric materials for memory and logic applications with superior energy efficiency and unprecedented switching speeds</p>
+                </div>
+                <div class="area-item fade-in">
+                    <div class="area-number">03</div>
+                    <h3>Electron Device Physics</h3>
+                    <p>Investigating fundamental physics of electron transport and quantum phenomena in nanostructured materials for next-generation nanoelectronics</p>
+                </div>
+                <div class="area-item fade-in">
+                    <div class="area-number">04</div>
+                    <h3>2D Materials & Heterostructures</h3>
+                    <p>Engineering atomically-thin materials with unique electronic and optical properties. The platform for future nanoelectronics and low-dimensional physics</p>
+                </div>
+                <div class="area-item fade-in">
+                    <div class="area-number">05</div>
+                    <h3>Spin Phenomena & Magnetics</h3>
+                    <p>Harnessing spin-orbit torques and magnetic phenomena for low-power computing devices with fundamentally new physics</p>
+                </div>
+                <div class="area-item fade-in">
+                    <div class="area-number">06</div>
+                    <h3>Beyond-CMOS Logic & Memory</h3>
+                    <p>Developing alternative computing paradigms including neuromorphic, quantum, and flexible electronics for energy-efficient information processing</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Berkeley Advanced Devices Lab. Part of UC Berkeley EECS Department.</p>
+            <div class="footer-links">
+                <a href="https://www.berkeley.edu/">Berkeley</a>
+                <a href="https://eecs.berkeley.edu/">EECS Department</a>
+                <a href="https://leed.eecs.berkeley.edu/">LEED Legacy Site</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

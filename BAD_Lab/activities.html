@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Activities - BAD Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Generic rotating image carousel
+            function setupImageRotation(elementId, category, count) {
+                const imageElement = document.getElementById(elementId);
+                if (!imageElement) return;
+
+                let currentIndex = 0;
+                const images = Array.from({length: count}, (_, i) => `content/${category}${i + 1}.png`);
+
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    imageElement.src = images[currentIndex];
+                }, 6000); // Change image every 6 seconds
+            }
+
+            // Setup rotations for food (4 images) and sports (6 images)
+            setupImageRotation('rotating-food-image', 'Food', 4);
+            setupImageRotation('rotating-sports-image', 'Sports', 6);
+            setupImageRotation('rotating-barbecues-image', 'Barbecues', 2);
+            setupImageRotation('rotating-goofy-image', 'goofy', 6);
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>BAD Lab</h1>
+                    <p class="tagline">Berkeley Advanced Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <p class="hero-overline">FUN & COLLABORATION</p>
+                <h1 class="hero-title">Group Activities</h1>
+                <p class="hero-tagline">Beyond the lab: Team bonding and informal gatherings</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section activities-intro">
+        <div class="container">
+            <div class="content-block fade-in">
+                <h2>Building Our Community</h2>
+                <p>While groundbreaking research is at the heart of BAD Lab, we believe that strong team connections fuel innovation and creativity. Our group activities provide opportunities for team members to connect on a personal level, share experiences, and strengthen the bonds that make our lab special.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="section activities-section">
+        <div class="container">
+            <!-- Activity 1 -->
+            <div class="activity-row fade-in">
+                <div class="activity-image" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);">
+                    <img id="rotating-food-image" src="content/Food1.png" alt="Lunch at Burma Love">
+                </div>
+                <div class="activity-text">
+                    <h2>Good Food</h2>
+                    <p>We have a few favorites. Great China in downtown Berkeley and Burma Love in SF.</p>
+                </div>
+            </div>
+
+            <!-- Activity 2 -->
+            <div class="activity-row fade-in">
+                <div class="activity-image" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
+                    <img id="rotating-sports-image" src="content/Sports1.png" alt="Sports">
+                </div>
+                <div class="activity-text">
+                    <h2>Sports</h2>
+                    <p>Our group members participate in various sports, fostering teamwork and healthy competition outside the lab.</p>
+                </div>
+            </div>
+
+            <!-- Activity 3 -->
+            <div class="activity-row fade-in">
+                <div class="activity-image" style="background: linear-gradient(135deg, #F7B731 0%, #F5AF19 100%);">
+                    <img id="rotating-barbecues-image" src="content/Barbecues1.png" alt="Barbecues">
+                </div>
+                <div class="activity-text">
+                    <h2>Barbecues</h2>
+                    <p>We're not shy around grills. From burgers and brats to bulgogi and beyond, our barbecues are a hit.</p>
+                </div>
+            </div>
+
+            <!-- Activity 4 -->
+            <div class="activity-row fade-in">
+                <div class="activity-image" style="background: linear-gradient(135deg, #A29BFE 0%, #6C5CE7 100%);">
+                    <img id="rotating-goofy-image" src="content/goofy1.png" alt="Just Being Goofy">
+                </div>
+                <div class="activity-text">
+                    <h2>Just Being Goofy</h2>
+                    <p>Goofball Royalty. Can't take yourself to seriously.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BAD Lab</h3>
+                    <p>Berkeley Advanced Devices Laboratory</p>
+                    <p class="footer-subtitle">UC Berkeley</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="activities.html">Activities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BAD Lab, UC Berkeley. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

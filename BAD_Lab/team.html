@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - BAD Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>BAD Lab</h1>
+                    <p class="tagline">Berkeley Advanced Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <p class="hero-overline">OUR PEOPLE</p>
+                <h1 class="hero-title">Team</h1>
+                <p class="hero-tagline">The faces transforming device science</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leader Section -->
+    <section class="leader-section">
+        <div class="container">
+            <div class="leader-content slide-in-left">
+                <div class="leader-text">
+                    <p class="leader-overline">LEADING INNOVATION</p>
+                    <h2>Prof. Sayeef Salahuddin</h2>
+                    <p class="leader-title">TSMC Distinguished Professor, EECS</p>
+                    <p>
+                        Prof. Salahuddin leads the Berkeley Advanced Devices Lab with a vision to transform electronics through fundamental physics. His research has pioneered new paradigms in ferroelectrics, spintronics, and energy-efficient computing.
+                    </p>
+                    <p>
+                        Recognized for advancing the scientific foundations of next-generation devices, his work bridges atomistic simulation with real-world device engineering.
+                    </p>
+                </div>
+                <div class="leader-visual slide-in-right">
+                    <div class="leader-box">
+                        <img src="content/team/salahuddin.jpg" alt="Prof. Sayeef Salahuddin">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The Team</h2>
+                <p class="section-description">The faces transforming device science</p>
+            </div>
+
+            <!-- Graduate Students -->
+            <div class="team-category">
+                <h2 class="team-category-title">Graduate Students</h2>
+                <div class="team-grid">
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/KoushikDas.jpg" alt="Koushik Das">
+                        </div>
+                        <h3 class="team-member-name">Koushik Das</h3>
+                        <p class="team-member-title">PhD Student, Chemistry</p>
+                        <p class="team-member-bio">Ferroic Thin Films for Energy-Efficient Logic and Memory</p>
+                    </div>
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/ChiragGarg.jpg" alt="Chirag Garg">
+                        </div>
+                        <h3 class="team-member-name">Chirag Garg</h3>
+                        <p class="team-member-title">PhD Student, EECS</p>
+                        <p class="team-member-bio">Hardware Accelerators for NP-hard Optimization Problems</p>
+                    </div>
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/RamitDutta.jpg" alt="Ramit Dutta">
+                        </div>
+                        <h3 class="team-member-name">Ramit Dutta</h3>
+                        <p class="team-member-title">PhD Student, EECS</p>
+                        <p class="team-member-bio">Ultrathin Body Ferroelectric FET</p>
+                    </div>
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/RichardMcManus.png" alt="Richard McManus">
+                        </div>
+                        <h3 class="team-member-name">Richard McManus</h3>
+                        <p class="team-member-title">PhD Student, EECS</p>
+                        <p class="team-member-bio">Frequency Scaling in RF SOI MOSFETs</p>
+                    </div>
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/KimPham.jpg" alt="Kim Pham">
+                        </div>
+                        <h3 class="team-member-name">Kim Pham</h3>
+                        <p class="team-member-title">PhD Student, EECS</p>
+                        <p class="team-member-bio">Ultra-high Density 3D Capacitors</p>
+                    </div>
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/Wei-YangWang.jpg" alt="Wei-Yang Wang">
+                        </div>
+                        <h3 class="team-member-name">Wei-Yang Wang</h3>
+                        <p class="team-member-title">PhD Student, EECS</p>
+                        <p class="team-member-bio">FeFET Array for Analog Computing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postdoctoral Fellows -->
+            <div class="team-category">
+                <h2 class="team-category-title">Postdoctoral Fellows</h2>
+                <div class="team-grid">
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/MyeongseopSong.jpg" alt="Myeongseop Song">
+                        </div>
+                        <h3 class="team-member-name">Myeongseop Song</h3>
+                        <p class="team-member-title">Postdoctoral Fellow, EECS</p>
+                        <p class="team-member-bio">ALD-grown Ultra-high Density Trench Capacitors</p>
+                    </div>
+                    <div class="team-member-card fade-in">
+                        <div class="team-member-image">
+                            <img src="content/team/JunghyeonHwang.jpg" alt="Junghyeon Hwang">
+                        </div>
+                        <h3 class="team-member-name">Junghyeon Hwang</h3>
+                        <p class="team-member-title">Postdoctoral Fellow, EECS</p>
+                        <p class="team-member-bio">Energy-efficient Memory Devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Berkeley Advanced Devices Lab. Part of UC Berkeley EECS Department.</p>
+            <div class="footer-links">
+                <a href="https://www.berkeley.edu/">Berkeley</a>
+                <a href="https://eecs.berkeley.edu/">EECS Department</a>
+                <a href="https://leed.eecs.berkeley.edu/">LEED Legacy Site</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

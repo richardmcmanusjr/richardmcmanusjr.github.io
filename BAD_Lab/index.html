@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAD Lab - Berkeley Advanced Devices</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Plasma Ball Effect
+        class PlasmaEffect {
+            constructor() {
+                this.canvas = document.getElementById('lava-lamp-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouseX = window.innerWidth / 2;
+                this.mouseY = window.innerHeight / 2;
+                this.time = 0;
+                this.setupCanvas();
+                this.initPlasmas();
+                this.setupEventListeners();
+                this.animate();
+            }
+
+            setupCanvas() {
+                this.canvas.width = this.canvas.offsetWidth;
+                this.canvas.height = this.canvas.offsetHeight;
+                window.addEventListener('resize', () => this.onWindowResize());
+            }
+
+            onWindowResize() {
+                this.canvas.width = this.canvas.offsetWidth;
+                this.canvas.height = this.canvas.offsetHeight;
+            }
+
+            initPlasmas() {
+                this.particles = [];
+                for (let i = 0; i < 6; i++) {
+                    this.particles.push(this.spawnPlasma());
+                }
+            }
+
+            spawnPlasma() {
+                const edge = Math.floor(Math.random() * 4);
+                let x, y;
+
+                switch(edge) {
+                    case 0: // top
+                        x = Math.random() * this.canvas.width;
+                        y = 0;
+                        break;
+                    case 1: // right
+                        x = this.canvas.width;
+                        y = Math.random() * this.canvas.height;
+                        break;
+                    case 2: // bottom
+                        x = Math.random() * this.canvas.width;
+                        y = this.canvas.height;
+                        break;
+                    case 3: // left
+                        x = 0;
+                        y = Math.random() * this.canvas.height;
+                        break;
+                }
+
+                return {
+                    x: x,
+                    y: y,
+                    vx: 0,
+                    vy: 0,
+                    hue: Math.random() * 60 + 200, // purple-blue range
+                    size: 4,
+                    wobbleOffset: Math.random() * Math.PI * 4
+                };
+            }
+
+            setupEventListeners() {
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                });
+            }
+
+            update() {
+                this.time += 0.001; // ~60fps
+
+                this.particles.forEach((particle, index) => {
+                    // Calculate direction toward mouse
+                    const dx = this.mouseX - particle.x;
+                    const dy = this.mouseY - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance > 8) {
+                        // Move toward mouse with high speed
+                        const speed = 50 + Math.random() * 8;
+                        const angle = Math.atan2(dy, dx);
+                        const wobble = Math.sin(this.time * 0.15 + particle.wobbleOffset) * 0.2;
+
+                        particle.vx = Math.cos(angle + wobble) * speed;
+                        particle.vy = Math.sin(angle + wobble) * speed;
+
+                        particle.x += particle.vx;
+                        particle.y += particle.vy;
+                    } else {
+                        // Reached cursor - respawn from edge
+                        this.particles[index] = this.spawnPlasma();
+                        return;
+                    }
+
+                    // Check if off-screen, respawn if so
+                    if (particle.x < -50 || particle.x > this.canvas.width + 50 ||
+                        particle.y < -50 || particle.y > this.canvas.height + 50) {
+                        this.particles[index] = this.spawnPlasma();
+                    }
+                });
+            }
+
+            draw() {
+                // Fade effect - clear with semi-transparent overlay for motion trails
+                this.ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw plasma balls
+                this.particles.forEach(particle => {
+                    // Create glow effect
+                    const gradient = this.ctx.createRadialGradient(
+                        particle.x, particle.y, 0,
+                        particle.x, particle.y, particle.size * 3
+                    );
+
+                    const hueShift = (this.time * 100 + particle.wobbleOffset * 50) % 60;
+                    const hue = (particle.hue + hueShift) % 360;
+
+                    gradient.addColorStop(0, `hsla(${hue}, 100%, 80%, 0.4)`);
+                    gradient.addColorStop(0.4, `hsla(${hue}, 100%, 60%, 0.2)`);
+                    gradient.addColorStop(1, `hsla(${hue}, 100%, 30%, 0.05)`);
+
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+                    this.ctx.fill();
+
+                    // Add bright core
+                    this.ctx.fillStyle = `hsla(${hue}, 100%, 95%, 0.3)`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size * 0.5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+            }
+
+            animate() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            new PlasmaEffect();
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>BAD Lab</h1>
+                    <p class="tagline">Berkeley Advanced Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <canvas id="lava-lamp-canvas" class="lava-lamp-canvas"></canvas>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <p class="hero-overline">BERKELEY ADVANCED DEVICES</p>
+                <h1 class="hero-title">Energy Efficient Electronics</h1>
+                <p class="hero-tagline">Discovering the physics that transforms technology</p>
+                <p class="hero-description">
+                    We explore emerging physics phenomena to engineer the next generation of electronic devices with unprecedented energy efficiency.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="research.html" class="cta-button primary">Explore Research</a>
+                    <a href="contact.html" class="cta-button secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Berkeley Advanced Devices Lab. Part of UC Berkeley EECS Department.</p>
+            <div class="footer-links">
+                <a href="https://www.berkeley.edu/">Berkeley</a>
+                <a href="https://eecs.berkeley.edu/">EECS Department</a>
+                <a href="https://leed.eecs.berkeley.edu/">LEED Legacy Site</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

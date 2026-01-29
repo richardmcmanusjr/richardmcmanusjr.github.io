@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - BAD Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>BAD Lab</h1>
+                    <p class="tagline">Berkeley Advanced Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <p class="hero-overline">REACH OUT</p>
+                <h1 class="hero-title">Contact</h1>
+                <p class="hero-tagline">Connect with us about research and collaboration</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Join Us</h2>
+                <p class="section-description">Collaborate on transformative research in advanced devices</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Contact Information</h3>
+                    <div class="info-block">
+                        <p class="info-label">Laboratory Address</p>
+                        <p>
+                            Department of Electrical Engineering and Computer Science<br>
+                            University of California, Berkeley<br>
+                            Berkeley, CA 94720
+                        </p>
+                    </div>
+                    <div class="info-block">
+                        <p class="info-label">Email</p>
+                        <p><a href="mailto:sayeef@berkeley.edu">sayeef@berkeley.edu</a></p>
+                    </div>
+                    <div class="info-block">
+                        <p class="info-label">Phone</p>
+                        <p>(510) 642-3215</p>
+                    </div>
+                    <div class="info-block">
+                        <p class="info-label">Legacy Website</p>
+                        <p><a href="https://leed.eecs.berkeley.edu/" target="_blank">leed.eecs.berkeley.edu</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+</body>
+</html>
