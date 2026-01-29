@@ -24,25 +24,57 @@
                 observer.observe(el);
             });
 
-            // Generic rotating image carousel
-            function setupImageRotation(elementId, category, count) {
+            // Generic toggleable image carousel
+            function setupImageCarousel(elementId, containerId, category, count) {
                 const imageElement = document.getElementById(elementId);
-                if (!imageElement) return;
+                const container = document.getElementById(containerId);
+                if (!imageElement || !container) return;
 
                 let currentIndex = 0;
                 const images = Array.from({length: count}, (_, i) => `content/${category}${i + 1}.png`);
 
-                setInterval(() => {
+                // Create carousel controls
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'carousel-controls';
+                
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'carousel-btn carousel-prev';
+                prevBtn.innerHTML = '&#10094;'; // Left arrow
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    imageElement.src = images[currentIndex];
+                    updateCounter();
+                });
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'carousel-btn carousel-next';
+                nextBtn.innerHTML = '&#10095;'; // Right arrow
+                nextBtn.addEventListener('click', () => {
                     currentIndex = (currentIndex + 1) % images.length;
                     imageElement.src = images[currentIndex];
-                }, 6000); // Change image every 6 seconds
+                    updateCounter();
+                });
+
+                const counter = document.createElement('span');
+                counter.className = 'carousel-counter';
+                const updateCounter = () => {
+                    counter.textContent = `${currentIndex + 1}/${images.length}`;
+                };
+                updateCounter();
+
+                controlsDiv.appendChild(prevBtn);
+                controlsDiv.appendChild(counter);
+                controlsDiv.appendChild(nextBtn);
+                
+                // Append controls to the container (image div)
+                container.appendChild(controlsDiv);
             }
 
-            // Setup rotations for food (4 images) and sports (6 images)
-            setupImageRotation('rotating-food-image', 'Food', 4);
-            setupImageRotation('rotating-sports-image', 'Sports', 6);
-            setupImageRotation('rotating-barbecues-image', 'Barbecues', 2);
-            setupImageRotation('rotating-goofy-image', 'goofy', 6);
+            // Setup carousels for food (4 images), sports (6 images), barbecues (2 images), and goofy (6 images)
+            setupImageCarousel('rotating-food-image', 'food-activity', 'Food', 4);
+            setupImageCarousel('rotating-sports-image', 'sports-activity', 'Sports', 6);
+            setupImageCarousel('rotating-barbecues-image', 'barbecues-activity', 'Barbecues', 2);
+            setupImageCarousel('rotating-goofy-image', 'goofy-activity', 'goofy', 6);
         });
     </script>
 </head>
@@ -96,7 +128,7 @@
         <div class="container">
             <!-- Activity 1 -->
             <div class="activity-row fade-in">
-                <div class="activity-image" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);">
+                <div id="food-activity" class="activity-image" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);">
                     <img id="rotating-food-image" src="content/Food1.png" alt="Lunch at Burma Love">
                 </div>
                 <div class="activity-text">
@@ -107,7 +139,7 @@
 
             <!-- Activity 2 -->
             <div class="activity-row fade-in">
-                <div class="activity-image" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
+                <div id="sports-activity" class="activity-image" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
                     <img id="rotating-sports-image" src="content/Sports1.png" alt="Sports">
                 </div>
                 <div class="activity-text">
@@ -118,7 +150,7 @@
 
             <!-- Activity 3 -->
             <div class="activity-row fade-in">
-                <div class="activity-image" style="background: linear-gradient(135deg, #F7B731 0%, #F5AF19 100%);">
+                <div id="barbecues-activity" class="activity-image" style="background: linear-gradient(135deg, #F7B731 0%, #F5AF19 100%);">
                     <img id="rotating-barbecues-image" src="content/Barbecues1.png" alt="Barbecues">
                 </div>
                 <div class="activity-text">
@@ -129,7 +161,7 @@
 
             <!-- Activity 4 -->
             <div class="activity-row fade-in">
-                <div class="activity-image" style="background: linear-gradient(135deg, #A29BFE 0%, #6C5CE7 100%);">
+                <div id="goofy-activity" class="activity-image" style="background: linear-gradient(135deg, #A29BFE 0%, #6C5CE7 100%);">
                     <img id="rotating-goofy-image" src="content/goofy1.png" alt="Just Being Goofy">
                 </div>
                 <div class="activity-text">
@@ -140,34 +172,14 @@
         </div>
     </section>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>BAD Lab</h3>
-                    <p>Berkeley Advanced Devices Laboratory</p>
-                    <p class="footer-subtitle">UC Berkeley</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="research.html">Research</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="activities.html">Activities</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul class="footer-links">
-                        <li><a href="publications.html">Publications</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 BAD Lab, UC Berkeley. All rights reserved.</p>
+            <p>&copy; 2026 Berkeley Advanced Devices Lab. Part of UC Berkeley EECS Department.</p>
+            <div class="footer-links">
+                <a href="https://www.berkeley.edu/">Berkeley</a>
+                <a href="https://eecs.berkeley.edu/">EECS Department</a>
+                <a href="https://leed.eecs.berkeley.edu/">LEED Legacy Site</a>
             </div>
         </div>
     </footer>

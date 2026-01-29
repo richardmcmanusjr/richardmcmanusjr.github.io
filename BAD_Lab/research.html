@@ -55,6 +55,11 @@
                         'Van der Waals heterostructures and 2D material systems',
                         'Strain engineering and interface control at the nanoscale',
                         'Quantum and transport phenomena in low-dimensional systems'
+                    ],
+                    students: [
+                        { name: 'Koushik Das', title: 'PhD Student, Chemistry', bio: 'Ferroic Thin Films for Energy-Efficient Logic and Memory', image: 'content/team/KoushikDas.jpg' },
+                        { name: 'Dr. Myeongseop Song', title: 'Postdoctoral Fellow, EECS', bio: 'ALD-grown Ultra-high Density Trench Capacitors', image: 'content/team/MyeongseopSong.jpg' },
+                        { name: 'Dr. Junghyeon Hwang', title: 'Postdoctoral Fellow, EECS', bio: 'Energy-efficient Memory Devices', image: 'content/team/JunghyeonHwang.jpg' }
                     ]
                 },
                 {
@@ -67,6 +72,9 @@
                         'Monte Carlo and Boltzmann transport calculations',
                         'Multi-scale modeling from atomistic to device level',
                         'Band structure engineering and electronic property prediction'
+                    ],
+                    students: [
+
                     ]
                 },
                 {
@@ -79,9 +87,17 @@
                         'Electrical characterization: C-V, I-V, and dynamic measurements',
                         'Advanced microscopy: TEM, SEM, and scanning probe techniques',
                         'Device testing at cryogenic and elevated temperatures'
+                    ],
+                    students: [
+                        { name: 'Richard McManus', title: 'PhD Student, EECS', bio: 'Frequency Scaling in RF SOI MOSFETs', image: 'content/team/RichardMcManus.png' },
+                        { name: 'Kim Pham', title: 'PhD Student, EECS', bio: 'Ultra-high Density 3D Capacitors', image: 'content/team/KimPham.jpg' },
+                        { name: 'Wei-Yang Wang', title: 'PhD Student, EECS', bio: 'FeFET Array for Analog Computing', image: 'content/team/Wei-YangWang.jpg' },
+                        { name: 'Ramit Dutta', title: 'PhD Student, EECS', bio: 'Ultrathin Body Ferroelectric FET', image: 'content/team/RamitDutta.jpg' },
+                        { name: 'Dr. Myeongseop Song', title: 'Postdoctoral Fellow, EECS', bio: 'ALD-grown Ultra-high Density Trench Capacitors', image: 'content/team/MyeongseopSong.jpg' },
+                        { name: 'Dr. Junghyeon Hwang', title: 'Postdoctoral Fellow, EECS', bio: 'Energy-efficient Memory Devices', image: 'content/team/JunghyeonHwang.jpg' }
                     ]
                 },
-                    {
+                {
                     title: 'Unconventional Computing',
                     icon: 'content/icon-computing.png',
                     description: 'Exploring novel computing paradigms for high-performance, energy-efficient information processing',
@@ -91,11 +107,52 @@
                         'Flexible and wearable electronics',
                         'Stochastic and probabilistic computing models',
                         'Integration of novel devices into computing systems'
+                    ],
+                    students: [
+                        { name: 'Chirag Garg', title: 'PhD Student, EECS', bio: 'Hardware Accelerators for NP-hard Optimization Problems', image: 'content/team/ChiragGarg.jpg' },
                     ]
                 }
             ];
 
             const content = expandedContent[index];
+            let currentStartIndex = 0;
+
+            function renderStudentCarousel() {
+                const numToShow = Math.min(3, content.students.length);
+                const visibleStudents = [];
+                for (let i = 0; i < numToShow; i++) {
+                    const idx = (currentStartIndex + i) % content.students.length;
+                    visibleStudents.push(content.students[idx]);
+                }
+
+                return `
+                    <div class="student-carousel">
+                        <h3>Team Members</h3>
+                        <div class="carousel-wrapper">
+                            <button class="carousel-arrow carousel-prev" aria-label="Previous students">&lt;</button>
+                            <div class="carousel-content">
+                                <div class="carousel-container">
+                                    <div class="students-grid">
+                                        ${visibleStudents.map(student => `
+                                            <div class="student-card-carousel">
+                                                <img src="${student.image}" alt="${student.name}" class="student-carousel-image">
+                                                <h4>${student.name}</h4>
+                                                <p class="student-title">${student.title}</p>
+                                                <p class="student-bio">${student.bio}</p>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                <div class="carousel-indicators">
+                                    ${Array.from({ length: content.students.length }).map((_, i) => `<span class="indicator ${i === currentStartIndex ? 'active' : ''}" data-index="${i}"></span>`).join('')}
+                                </div>
+                            </div>
+                            <button class="carousel-arrow carousel-next" aria-label="Next students">&gt;</button>
+                        </div>
+                    </div>
+                `;
+            }
+
             overlay.innerHTML = `
                 <div class="expansion-modal">
                     <button class="close-button">&times;</button>
@@ -109,14 +166,67 @@
                         <ul class="modal-details">
                             ${content.details.map(detail => `<li>${detail}</li>`).join('')}
                         </ul>
+                        ${renderStudentCarousel()}
                     </div>
                 </div>
             `;
 
             document.body.appendChild(overlay);
 
-            // Close button functionality
-            overlay.querySelector('.close-button').addEventListener('click', function() {
+            function updateCarousel() {
+                const modalContent = overlay.querySelector('.modal-content');
+                const focusAreasList = `<ul class="modal-details">
+                    ${content.details.map(detail => `<li>${detail}</li>`).join('')}
+                </ul>`;
+                
+                modalContent.innerHTML = `
+                    <button class="close-button">&times;</button>
+                    <div class="modal-icon-wrapper">
+                        <img src="${content.icon}" alt="${content.title}" class="modal-icon">
+                    </div>
+                    <h2>${content.title}</h2>
+                    <p class="modal-description">${content.description}</p>
+                    <h3>Key Focus Areas:</h3>
+                    ${focusAreasList}
+                    ${renderStudentCarousel()}
+                `;
+
+                // Reattach event listeners
+                attachCarouselListeners();
+                const newCloseBtn = modalContent.querySelector('.close-button');
+                newCloseBtn.addEventListener('click', function() {
+                    overlay.remove();
+                });
+            }
+
+            function attachCarouselListeners() {
+                const newPrevBtn = overlay.querySelector('.carousel-prev');
+                const newNextBtn = overlay.querySelector('.carousel-next');
+                const newIndicators = overlay.querySelectorAll('.indicator');
+
+                newPrevBtn.addEventListener('click', () => {
+                    currentStartIndex = (currentStartIndex - 1 + content.students.length) % content.students.length;
+                    updateCarousel();
+                });
+
+                newNextBtn.addEventListener('click', () => {
+                    currentStartIndex = (currentStartIndex + 1) % content.students.length;
+                    updateCarousel();
+                });
+
+                newIndicators.forEach(indicator => {
+                    indicator.addEventListener('click', () => {
+                        currentStartIndex = parseInt(indicator.dataset.index);
+                        updateCarousel();
+                    });
+                });
+            }
+
+            // Initial event listeners
+            attachCarouselListeners();
+
+            const closeBtn = overlay.querySelector('.close-button');
+            closeBtn.addEventListener('click', function() {
                 overlay.remove();
             });
 
