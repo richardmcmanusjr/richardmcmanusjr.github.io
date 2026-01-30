@@ -14,7 +14,7 @@
     'content/team/Wei-YangWang.jpg',
     'content/team/YonghyeokSon.jpg',
     'content/team/JooseongYun.jpg',
-    'content/team/You.jpg',
+    'content/team/You.png',
     'content/team/JunghyeonHwang.jpg',
     'content/team/MyeongseopSong.jpg',
     'content/team/UrmitaSikder.png',
