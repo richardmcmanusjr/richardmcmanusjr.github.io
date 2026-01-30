@@ -777,11 +777,12 @@ section:nth-child(even) {
 /* Leader Section */
 .leader-section {
     background: var(--primary-white);
+    padding: calc(var(--spacing) * 6) 0;
 }
 
 .leader-content {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr 1fr;
     gap: calc(var(--spacing) * 6);
     align-items: center;
     justify-content: center;
@@ -813,6 +814,12 @@ section:nth-child(even) {
     font-size: 1.05rem;
     line-height: 1.9;
     margin-bottom: calc(var(--spacing) * 1.5);
+}
+
+.leader-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .leader-box {
