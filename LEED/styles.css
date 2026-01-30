@@ -724,7 +724,11 @@ section:nth-child(even) {
     /* Carousel stays single row */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
+    .logo .tagline {
+        display: none;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -760,7 +764,9 @@ section:nth-child(even) {
     .navbar {
         padding: calc(var(--spacing) * 1) 0;
     }
+}
 
+@media (max-width: 768px) {
     .carousel-container {
         gap: calc(var(--spacing) * 1);
         flex-wrap: wrap;
