@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - LEED</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Image preloader script -->
+    <script src="image-preloader.js" defer></script>
+    <!-- Service worker registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').then(function(registration) {
+            console.log('Service Worker registered successfully:', registration);
+          }, function(error) {
+            console.log('Service Worker registration failed:', error);
+          });
+        });
+      }
+    </script>
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>LEED</h1>
+                    <p class="tagline">Laboratory for Emerging and Exploratory Devices</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-video-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <p class="hero-overline">LATEST UPDATES</p>
+                <h1 class="hero-title">News & Announcements</h1>
+                <p class="hero-tagline">Stay informed about our latest breakthroughs and milestones</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="container">
+            <div class="news-grid">
+                 <!-- News Item 1 -->
+                <article class="news-card fade-in">
+                    <div class="news-date">
+                        <span class="news-month">Dec</span>
+                        <span class="news-day">2025</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Jong Ho Park Delivers his Dissertation Talk</h3>
+                        <p class="news-category">Talks</p>
+                        <p>Design and Characterization of High Performance and Energy-efficient Devices Using Negative Capacitance High-K Gate Stack</p>
+                        <a href="https://www.aps.org/funding-recognition/prize/james-mcgroddy" class="news-link">Read more →</a>
+                    </div>
+                </article>
+                <!-- News Item 2 -->
+                <article class="news-card fade-in">
+                    <div class="news-date">
+                        <span class="news-month">Dec</span>
+                        <span class="news-day">2025</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Sonera Detects Magnetic Muscle Activity</h3>
+                        <p class="news-category">Startups</p>
+                        <p>"first time ever that magnetomyography (MMG) signals can be detected in everyday environments"</p>
+                        <a href="https://www.aps.org/funding-recognition/prize/james-mcgroddy" class="news-link">Read more →</a>
+                    </div>
+                </article>
+                <!-- News Item 3 -->
+                <article class="news-card fade-in">
+                    <div class="news-date">
+                        <span class="news-month">Nov</span>
+                        <span class="news-day">2025</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Sayeef Salahuddin Receives James C. McGroddy Prize for New Materials</h3>
+                        <p class="news-category">Awards</p>
+                        <p>“for the discovery of ferroelectricity in ultra thin hafnium based oxides and their implementation in microelectronic devices.”</p>
+                        <a href="https://www.aps.org/funding-recognition/prize/james-mcgroddy" class="news-link">Read more →</a>
+                    </div>
+                </article>
+                <!-- News Item 4 -->
+                <article class="news-card fade-in">
+                    <div class="news-date">
+                        <span class="news-month">August</span>
+                        <span class="news-day">2025</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>New Lab Members Join LEED!</h3>
+                        <p class="news-category">Team</p>
+                        <p>Welcome to our new graduate students, Yonghyeok and Jooseong! Meet our expanding team of researchers.</p>
+                        <a href="#research" class="news-link">Read more →</a>
+                    </div>
+                </article>
+                <!-- News Item 5 -->
+                <article class="news-card fade-in">
+                    <div class="news-date">
+                        <span class="news-month">July</span>
+                        <span class="news-day">2024</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Sayeef Salahuddin Receives IEEE Andrew S. Grove Award</h3>
+                        <p class="news-category">Awards</p>
+                        <p>“for pioneering contributions to physics of ferroelectrics and integrated ferroelectric devices.”</p>
+                        <a href="https://corporate-awards.ieee.org/wp-content/uploads/grove-rl.pdf" class="news-link">Read more →</a>
+                    </div>
+                </article>
+        </div>
+    </section>
+
+   <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Laboratory for Emerging and Exploratory Devices. Part of UC Berkeley EECS Department.</p>
+            <div class="footer-links">
+                <a href="https://www.berkeley.edu/">Berkeley</a>
+                <a href="https://eecs.berkeley.edu/">EECS Department</a>
+                <a href="https://leed.eecs.berkeley.edu/">LEED Legacy Site</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

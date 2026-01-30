@@ -1449,3 +1449,75 @@ textarea:focus {
     min-width: 40px;
     text-align: center;
 }
+
+/* News Section Styles */
+.news-section {
+    padding: 6rem 0;
+    background-color: var(--primary-white);
+}
+
+.news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.news-card:last-child {
+    border-bottom: none;
+}
+
+.news-date {
+    display: inline;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.news-month {
+    display: none;
+}
+
+.news-day {
+    display: none;
+}
+
+.news-content h3 {
+    margin: 0.5rem 0;
+    color: var(--text-dark);
+    font-size: 1.3rem;
+}
+
+.news-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.news-content p {
+    margin-bottom: 0.75rem;
+    color: var(--text-light);
+}
+
+.news-link {
+    font-weight: 600;
+    color: var(--accent-blue);
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.news-link:hover {
+    color: var(--accent-blue-dark);
+}
