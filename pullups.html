@@ -512,7 +512,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏋️ PULL-UP BATTLE 🏋️</h1>
+            <h1>🏋️ PULL-UP Tracker 🏋️</h1>
             <p>One American. One Korean. One Goal.</p>
         </div>
 
@@ -636,6 +636,24 @@
     <script>
         const API_URL = "https://script.google.com/macros/s/AKfycbyPR0FwTDQLBoPrL9t9sii6mvlncDHC6iszUQ9WrlrwZN_53VnPsxYW2-Tpydlk8cKC_A/exec";
 
+        // Helper function to normalize dates consistently
+        function normalizeDate(dateStr) {
+            try {
+                // If it's an ISO string from Google Sheets, parse it
+                if (typeof dateStr === 'string' && dateStr.includes('T')) {
+                    const date = new Date(dateStr);
+                    dateStr = date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                }
+            } catch (err) {
+                // If parsing fails, use it as-is
+            }
+            return dateStr;
+        }
+
         // Data Structure
         const data = {
             usa: {
@@ -722,8 +740,13 @@
             timeInput.value = '';
             updateDisplay();
 
-            // Save to Google Sheets
-            await saveToSheets(country, today, count, time);
+            // Save to Google Sheets with normalized date format
+            const normalizedDate = new Date(today).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            await saveToSheets(country, normalizedDate, count, time);
         }
 
         // Quick add 10 pull-ups
@@ -750,8 +773,13 @@
 
             updateDisplay();
 
-            // Save to Google Sheets
-            await saveToSheets(country, today, 10, time);
+            // Save to Google Sheets with normalized date format
+            const normalizedDate = new Date(today).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            await saveToSheets(country, normalizedDate, 10, time);
         }
 
         // Reset data for a country
@@ -778,33 +806,26 @@
         function updateChart(country) {
             const entries = data[country].entries;
             
-            // Group entries by date and sum pull-ups per day
+            // Normalize dates and group entries by date and sum pull-ups per day
             const dailyTotals = {};
             const dateOrder = [];
             
             entries.forEach(e => {
-                let dateStr = e.date;
-                try {
-                    // If it's an ISO string from Google Sheets, parse it
-                    if (typeof dateStr === 'string' && dateStr.includes('T')) {
-                        const date = new Date(dateStr);
-                        dateStr = date.toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric'
-                        });
-                    }
-                } catch (err) {
-                    // If parsing fails, use it as-is
-                }
+                const normalizedDate = normalizeDate(e.date);
                 
-                if (!dailyTotals[dateStr]) {
-                    dailyTotals[dateStr] = 0;
-                    dateOrder.push(dateStr);
+                if (!dailyTotals[normalizedDate]) {
+                    dailyTotals[normalizedDate] = 0;
+                    dateOrder.push(normalizedDate);
                 }
-                dailyTotals[dateStr] += e.count;
+                dailyTotals[normalizedDate] += e.count;
             });
             
-            const labels = dateOrder;
+            const labels = dateOrder.map(date => {
+                // Format for display (remove year for cleaner look)
+                // date is in format "Feb 3, 2026"
+                const parts = date.split(',')[0].trim(); // "Feb 3"
+                return parts;
+            });
             const values = dateOrder.map(date => dailyTotals[date]);
 
             const canvasId = country + 'Chart';
@@ -870,19 +891,17 @@
         // Update statistics for a country
         function updateStats(country) {
             const entries = data[country].entries;
-            const total = data[country].total;
             
-            // Count unique days
-            const uniqueDates = new Set(entries.map(e => e.date));
-            const days = uniqueDates.size;
-            
-            // Find best day (sum of all entries on that day)
+            // Count unique days and calculate daily totals with normalized dates
             const dailyTotals = {};
             entries.forEach(e => {
-                dailyTotals[e.date] = (dailyTotals[e.date] || 0) + e.count;
+                const normalizedDate = normalizeDate(e.date);
+                dailyTotals[normalizedDate] = (dailyTotals[normalizedDate] || 0) + e.count;
             });
-            const best = Object.keys(dailyTotals).length > 0 ? Math.max(...Object.values(dailyTotals)) : 0;
             
+            const days = Object.keys(dailyTotals).length;
+            const total = Object.values(dailyTotals).reduce((sum, val) => sum + val, 0);
+            const best = days > 0 ? Math.max(...Object.values(dailyTotals)) : 0;
             const avg = days > 0 ? Math.round(total / days) : 0;
 
             document.getElementById(country + 'Total').textContent = total;
