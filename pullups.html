@@ -636,6 +636,38 @@
     <script>
         const API_URL = "https://script.google.com/macros/s/AKfycbyPR0FwTDQLBoPrL9t9sii6mvlncDHC6iszUQ9WrlrwZN_53VnPsxYW2-Tpydlk8cKC_A/exec";
 
+        // Helper to parse Google Sheets ISO time and get local hours/minutes without timezone conversion
+        function parseGoogleSheetsTime(isoTimeString) {
+            if (!isoTimeString || typeof isoTimeString !== 'string') return null;
+            
+            try {
+                // Extract the time part from ISO string like "1899-12-31T08:34:00.000Z"
+                const timeMatch = isoTimeString.match(/T(\d{2}):(\d{2}):(\d{2})/);
+                if (!timeMatch) return null;
+                
+                let hours = parseInt(timeMatch[1]);
+                const minutes = timeMatch[2];
+                
+                // Google Sheets stores times as UTC, but we want the local time
+                // Get the timezone offset (in minutes)
+                const now = new Date();
+                const tzOffset = now.getTimezoneOffset(); // minutes behind UTC
+                
+                // Correct the hours by the timezone offset
+                // If you're UTC-5 (EST), getTimezoneOffset returns 300
+                // We need to SUBTRACT to convert from UTC to local time
+                hours = hours - Math.round(tzOffset / 60);
+                
+                // Handle day wraparound
+                if (hours >= 24) hours -= 24;
+                if (hours < 0) hours += 24;
+                
+                return { hours, minutes };
+            } catch (e) {
+                return null;
+            }
+        }
+
         // Helper function to normalize dates consistently
         function normalizeDate(dateStr) {
             try {
@@ -961,22 +993,24 @@
                 let timeStr = '';
                 if (entry.time) {
                     try {
-                        // If it's a time string like "14:30"
                         if (typeof entry.time === 'string') {
-                            // Check if it's the Google Sheets format (1899-12-31T...)
-                            if (entry.time.includes('1899-12-31')) {
-                                // Extract time from ISO string: "1899-12-31T14:30:00.000Z"
-                                const date = new Date(entry.time);
-                                let hours = date.getHours();
-                                const minutes = String(date.getMinutes()).padStart(2, '0');
-                                const period = hours >= 12 ? 'PM' : 'AM';
-                                hours = hours % 12 || 12; // Convert to 12-hour format
-                                timeStr = ` at ${hours}:${minutes} ${period}`;
+                            let hours, minutes;
+                            
+                            // Try parsing as Google Sheets ISO time first
+                            if (entry.time.includes('T')) {
+                                const parsed = parseGoogleSheetsTime(entry.time);
+                                if (parsed) {
+                                    hours = parsed.hours;
+                                    minutes = parsed.minutes;
+                                }
                             } else if (entry.time.includes(':')) {
-                                // Direct time format like "14:30" - convert to 12-hour
+                                // Simple HH:MM:SS format
                                 const timeParts = entry.time.split(':');
-                                let hours = parseInt(timeParts[0]);
-                                const minutes = timeParts[1];
+                                hours = parseInt(timeParts[0]);
+                                minutes = timeParts[1];
+                            }
+                            
+                            if (hours !== undefined) {
                                 const period = hours >= 12 ? 'PM' : 'AM';
                                 hours = hours % 12 || 12;
                                 timeStr = ` at ${hours}:${minutes} ${period}`;
