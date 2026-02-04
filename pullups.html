@@ -654,6 +654,22 @@
             return dateStr;
         }
 
+        // Password protection
+        let isAuthenticated = false;
+        const CORRECT_PASSWORD = "sayeef"; // Change this to your desired password
+
+        function checkPassword() {
+            if (isAuthenticated) return true;
+            const password = prompt("Enter password to edit:");
+            if (password === CORRECT_PASSWORD) {
+                isAuthenticated = true;
+                return true;
+            } else {
+                alert("Incorrect password!");
+                return false;
+            }
+        }
+
         // Data Structure
         const data = {
             usa: {
@@ -711,6 +727,8 @@
 
         // Add pull-ups
         async function addPullups(country) {
+            if (!checkPassword()) return;
+
             const input = document.getElementById(country + 'Input');
             const timeInput = document.getElementById(country + 'Time');
             const count = parseInt(input.value);
@@ -751,6 +769,8 @@
 
         // Quick add 10 pull-ups
         async function quickAdd(country) {
+            if (!checkPassword()) return;
+
             const today = new Date().toLocaleDateString('en-US', {
                 month: 'short',
                 day: 'numeric',
