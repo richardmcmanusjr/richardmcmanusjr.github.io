@@ -855,7 +855,7 @@ body {
 }
 
 .life-card:nth-child(3) .life-emoji {
-    animation: none;
+    animation: bounce 0.6s ease-in-out infinite;
 }
 
 .life-card:nth-child(4) .life-emoji {
