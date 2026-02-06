@@ -531,6 +531,11 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: 120vh;
+    margin-bottom: 8rem;
+}
+
+.featured-race .container:first-of-type {
+    margin-bottom: 8rem;
 }
 
 .featured-content {
