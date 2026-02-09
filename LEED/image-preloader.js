@@ -18,6 +18,7 @@
     'content/team/JunghyeonHwang.jpg',
     'content/team/MyeongseopSong.jpg',
     'content/team/UrmitaSikder.png',
+    'content/team/RakshitJain.png',
     // Research icons
     'content/icon-materials.png',
     'content/icon-simulation.png',
@@ -37,6 +38,7 @@
     'content/Sports6.png',
     'content/Barbecues1.png',
     'content/Barbecues2.png',
+    'content/Barbecues3.png',
     'content/goofy1.png',
     'content/goofy2.png',
     'content/goofy3.png',

@@ -855,7 +855,7 @@ body {
 }
 
 .life-card:nth-child(3) .life-emoji {
-    animation: bounce 0.6s ease-in-out infinite;
+    animation: none;
 }
 
 .life-card:nth-child(4) .life-emoji {
@@ -1104,7 +1104,6 @@ section::after {
         flex-direction: column;
         text-align: center;
         min-height: auto;
-        background-attachment: scroll;
     }
 
     .about h2,
