@@ -1,6 +1,66 @@
 // Plato Run Club - Interactive Elements
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Media preloader (images + videos) - background only
+    function collectMediaSources() {
+        const imageSources = new Set();
+        const videoSources = new Set();
+
+        document.querySelectorAll('img').forEach(img => {
+            const src = img.currentSrc || img.getAttribute('src');
+            if (src) {
+                imageSources.add(src);
+            }
+        });
+
+        document.querySelectorAll('video').forEach(video => {
+            const directSrc = video.currentSrc || video.getAttribute('src');
+            if (directSrc) {
+                videoSources.add(directSrc);
+            }
+            video.querySelectorAll('source').forEach(source => {
+                const src = source.getAttribute('src');
+                if (src) {
+                    videoSources.add(src);
+                }
+            });
+        });
+
+        return {
+            images: Array.from(imageSources),
+            videos: Array.from(videoSources)
+        };
+    }
+
+    function preloadMedia() {
+        const { images, videos } = collectMediaSources();
+
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        videos.forEach(src => {
+            const video = document.createElement('video');
+            video.preload = 'auto';
+            video.muted = true;
+            video.playsInline = true;
+
+            if (video.canPlayType) {
+                const source = document.createElement('source');
+                source.src = src;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+            } else {
+                video.src = src;
+            }
+
+            video.load();
+        });
+    }
+
+    preloadMedia();
+
     // Mobile menu toggle
     const hamburger = document.getElementById('menuButton');
     const navLinks = document.getElementById('navLinks');
