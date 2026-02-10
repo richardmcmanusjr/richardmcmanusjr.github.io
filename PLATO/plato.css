@@ -42,11 +42,12 @@ body {
     color: var(--ink);
     background-color: var(--paper);
     overflow-x: hidden;
+        position: relative;
 }
 
 body::before{
   content:"";
-  position: fixed;
+    position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: -1;
@@ -102,7 +103,7 @@ body::before{
 
 body.section-texture .about::before,
 body.section-texture .events::before {
-    display: block;
+    display: none;
 }
 
 .container {
@@ -658,7 +659,7 @@ a:hover {
 /* About Section */
 .about {
     padding: 6rem 0;
-    background: var(--paper);
+    background: transparent;
     position: relative;
     min-height: 95vh;
     display: flex;
@@ -891,11 +892,12 @@ a:hover {
 
 /* Events Section */
 .events {
-    background: var(--paper);
+    background: transparent;
     position: relative;
     min-height: 95vh;
     display: flex;
     align-items: center;
+    padding-top: 3rem;
 }
 
 .events::before {
@@ -1234,6 +1236,11 @@ a:hover {
     pointer-events: none;
 }
 
+.cta-section + .copyright-footer {
+    background: var(--text-dark);
+    color: rgba(255, 255, 255, 0.6);
+}
+
 .cta-content {
     text-align: center;
     max-width: 700px;
@@ -1505,7 +1512,11 @@ a:hover {
     .events,
     .community,
     .cta-section {
-        padding: 3rem 0;
+        padding: 3rem 3rem;
+    }
+
+    .events {
+        padding-top: 7rem;
     }
 
     .about-grid {
@@ -1592,6 +1603,10 @@ a:hover {
 
     .about-card {
         padding: 1.25rem;
+    }
+
+    .events {
+        padding-top: 6.5rem;
     }
 
     .stat-card {
