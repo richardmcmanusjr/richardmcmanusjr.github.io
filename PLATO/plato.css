@@ -595,7 +595,7 @@ a:hover {
     font-weight: 400;
     letter-spacing: 0.15em;
     display: inline-block;
-    padding: 0.5rem 5rem;
+    padding: 0.75rem 5rem;
     font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -605,38 +605,40 @@ a:hover {
     font-family: var(--font-accent);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .cta-button.primary {
     background: var(--ink);
-    color: var(--primary-white);
+    color: rgba(255, 255, 255, 0.8);
     box-shadow: none;
     margin-top: 1rem;
     /* Adding texture similar to the background */
-    background-image:
-        repeating-linear-gradient(19deg, rgba(0,0,0,0.012) 0px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(43deg, rgba(0,0,0,0.009) 0px, transparent 4px, transparent 11px),
-        repeating-linear-gradient(7deg, rgba(0,0,0,0.011) 0px, transparent 2px, transparent 9px),
-        repeating-linear-gradient(61deg, rgba(0,0,0,0.008) 0px, transparent 5px, transparent 13px),
-        repeating-linear-gradient(28deg, rgba(0,0,0,0.01) 0px, transparent 3px, transparent 10px),
-        repeating-linear-gradient(74deg, rgba(0,0,0,0.008) 0px, transparent 4px, transparent 12px),
-        repeating-linear-gradient(11deg, rgba(139,120,93,0.012) 0px, transparent 6px, transparent 16px),
-        repeating-linear-gradient(52deg, rgba(101,85,68,0.009) 0px, transparent 5px, transparent 14px),
-        repeating-linear-gradient(35deg, rgba(139,120,93,0.011) 0px, transparent 4px, transparent 11px),
-        repeating-linear-gradient(67deg, rgba(101,85,68,0.009) 0px, transparent 3px, transparent 9px),
-        repeating-linear-gradient(22deg, rgba(0,0,0,0.008) 0px, transparent 5px, transparent 13px),
-        repeating-linear-gradient(56deg, rgba(139,120,93,0.01) 0px, transparent 6px, transparent 15px),
-        repeating-linear-gradient(41deg, rgba(101,85,68,0.008) 0px, transparent 4px, transparent 10px),
-        repeating-linear-gradient(73deg, rgba(0,0,0,0.009) 0px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(14deg, rgba(139,120,93,0.011) 0px, transparent 5px, transparent 12px),
-        radial-gradient(ellipse 200px 300px at 15% 25%, rgba(139,120,93,0.025) 0%, transparent 40%),
-        radial-gradient(ellipse 250px 180px at 85% 65%, rgba(139,120,93,0.02) 0%, transparent 35%),
-        radial-gradient(ellipse 150px 200px at 60% 15%, rgba(101,85,68,0.015) 0%, transparent 45%),
-        radial-gradient(ellipse 180px 150px at 30% 75%, rgba(139,120,93,0.018) 0%, transparent 40%),
-        radial-gradient(ellipse 220px 160px at 75% 35%, rgba(101,85,68,0.012) 0%, transparent 38%),
-        radial-gradient(ellipse 280px 220px at 42% 58%, rgba(139,120,93,0.015) 0%, transparent 42%);
     mix-blend-mode: multiply;
     opacity: 0.9;
+}
+
+.cta-button.primary span {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-button.primary::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("grit2.png");
+    background-size: 180px 180px;
+    background-repeat: repeat;
+    opacity: 1;
+    pointer-events: none;
+    mix-blend-mode: normal;
+    z-index: 0;
+    filter: brightness(20%); /* Makes the image 50% darker (half brightness) */
+    box-shadow: 
+        inset 0.5px -0.5px 0 1px rgba(0, 0, 0, 0.4),
+        inset -0.5px 0.5px 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .cta-button.primary:hover {
@@ -964,13 +966,16 @@ a:hover {
 }
 
 .event-card {
-    background: var(--text-dark);
+    background-color: rgba(47,46,44,1);
     color: var(--primary-white);
     padding: 1.5rem;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow:
+        inset 0 0 0 2px rgba(0, 0, 0, 1),
+        inset 0 0 0 4px rgba(255, 255, 255, 1);
 }
 
 .event-card::before {
@@ -984,6 +989,33 @@ a:hover {
     transition: left 0.5s ease;
 }
 
+.event-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("grit2.png");
+    background-size: 180px 180px;
+    background-repeat: repeat;
+    opacity: 1;
+    pointer-events: none;
+    mix-blend-mode: normal;
+    z-index: 0;
+    filter: brightness(30%); /* Makes the image 50% darker (half brightness) */
+    box-shadow: 
+        inset 1px -1px 0 1px rgba(0, 0, 0, 0.4),
+        inset -1px 1px 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 0 0 3px rgba(255, 255, 255, 0.6),
+        inset 0 0 0 6px rgba(0, 0, 0, 0.5),
+        inset 1px -1px 0 7px rgba(0, 0, 0, 0.4),
+        inset -1px 1px 0 7px rgba(255, 255, 255, 0.4),
+        inset 0 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.event-card > * {
+    position: relative;
+    z-index: 1;
+}
+
 .event-card:hover::before {
     left: 100%;
 }
@@ -994,17 +1026,39 @@ a:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+.event-tag::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("grit.png");
+    background-size: 180px 180px;
+    background-repeat: repeat;
+    opacity: 0.5;
+    pointer-events: none;
+    mix-blend-mode: normal;
+    z-index: 0;
+}
 .event-tag {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.8);
-    padding: 0.3rem 0.8rem;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: rgba(183, 179, 170);
+    color: var(--ink);
+    padding: 0.2rem 0.8rem;
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0.6rem;
     letter-spacing: 0.08em;
+    border: 1px solid rgba(183, 179, 170);
 }
+
+.event-tag span {
+    position: relative;
+    z-index: 1;
+}
+
 
 .event-card h3 {
     margin-bottom: 0.3rem;
@@ -1027,7 +1081,7 @@ a:hover {
     display: flex;
     gap: 1.5rem;
     padding-top: 1rem;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(183, 179, 170);
     font-size: 0.75rem;
 }
 

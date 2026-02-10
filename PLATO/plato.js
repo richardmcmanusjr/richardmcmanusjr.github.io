@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
             'Bench.png',
             'BerkeleyHalfGroup.png',
             'wafer.png',
-            'pumps.png'
+            'pumps.png',
+            'grit.png',
+            'grit2.png',
         ],
         videos: [
             'RunClub.mov'
