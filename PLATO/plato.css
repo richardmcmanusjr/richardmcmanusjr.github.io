@@ -583,7 +583,7 @@ a:hover {
 }
 
 .cta-button.primary {
-    background: var(--text-dark);
+    background: var(--ink);
     color: var(--primary-white);
     box-shadow: none;
     margin-top: 1rem;
@@ -611,20 +611,13 @@ a:hover {
         radial-gradient(ellipse 220px 160px at 75% 35%, rgba(101,85,68,0.012) 0%, transparent 38%),
         radial-gradient(ellipse 280px 220px at 42% 58%, rgba(139,120,93,0.015) 0%, transparent 42%);
     mix-blend-mode: multiply;
-    opacity: 0.55;
+    opacity: 0.9;
 }
 
-/* Ink effect for the button */
-.cta-button.primary.ink-effect:hover {
-    filter: contrast(999) blur(12px);
-    opacity: 0;
-    transition: filter 3s ease-in-out, opacity 3s ease-in-out 1s;
-}
-
-.cta-button.primary.ink-effect {
-    filter: contrast(999) blur(0px);
-    transition: filter 3s ease-in-out, opacity 3s ease-in-out 1s;
+.cta-button.primary:hover {
+    background: var(--accent-primary);
     color: var(--primary-white);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .cta-button.secondary {
