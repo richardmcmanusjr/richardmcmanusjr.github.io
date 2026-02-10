@@ -94,16 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.animationDelay = `${index * 0.1}s`;
     });
 
-    // Navbar transparency on scroll
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.borderBottomColor = 'rgba(0, 137, 123, 0.5)';
-        } else {
-            navbar.style.borderBottomColor = 'rgba(0, 137, 123, 0.2)';
-        }
-    });
-
     // Optional: Add scroll progress indicator on hero section
     const hero = document.querySelector('.hero');
     if (hero) {
