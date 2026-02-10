@@ -2,6 +2,26 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Media preloader (images + videos) - background only
+    const extraMedia = {
+        images: [
+            'PLATO.png',
+            'PlatoBlur2.png',
+            'Garmin.png',
+            'Myeongseop.png',
+            'Richard.jpg',
+            'Richard2.png',
+            'RichardNanolab.png',
+            'Chacko.png',
+            'Bench.png',
+            'BerkeleyHalfGroup.png',
+            'wafer.png',
+            'pumps.png'
+        ],
+        videos: [
+            'RunClub.mov'
+        ]
+    };
+
     function collectMediaSources() {
         const imageSources = new Set();
         const videoSources = new Set();
@@ -26,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        extraMedia.images.forEach(src => imageSources.add(src));
+        extraMedia.videos.forEach(src => videoSources.add(src));
+
         return {
             images: Array.from(imageSources),
             videos: Array.from(videoSources)
@@ -46,10 +69,16 @@ document.addEventListener('DOMContentLoaded', function() {
             video.muted = true;
             video.playsInline = true;
 
-            if (video.canPlayType) {
+            const extension = (src.split('?')[0].split('#')[0].split('.').pop() || '').toLowerCase();
+            let mimeType = '';
+            if (extension === 'mp4') mimeType = 'video/mp4';
+            if (extension === 'webm') mimeType = 'video/webm';
+            if (extension === 'mov') mimeType = 'video/quicktime';
+
+            if (mimeType) {
                 const source = document.createElement('source');
                 source.src = src;
-                source.type = 'video/mp4';
+                source.type = mimeType;
                 video.appendChild(source);
             } else {
                 video.src = src;
