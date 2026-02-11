@@ -19,6 +19,7 @@
     'content/team/MyeongseopSong.jpg',
     'content/team/UrmitaSikder.png',
     'content/team/RakshitJain.png',
+    'content/team/SteveVolkman.png',
     // Research icons
     'content/icon-materials.png',
     'content/icon-simulation.png',

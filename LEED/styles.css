@@ -658,16 +658,16 @@ section:nth-child(even) {
 }
 
 .student-card-carousel {
-    flex: 1 1 250px;
-    min-width: 0;
+    width: 250px;
     text-align: center;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
 .student-carousel-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: calc(var(--spacing) * 1.5);
@@ -794,6 +794,7 @@ section:nth-child(even) {
     }
 
     .student-carousel-image {
+        width: 200px;
         height: 200px;
     }
 
