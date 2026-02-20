@@ -11,7 +11,7 @@
     'content/team/RichardMcManus.png',
     'content/team/KimPham.jpg',
     'content/team/AniketSadishiva.jpg',
-    'content/team/Wei-YangWang.jpg',
+    'content/team/Wei-YangWeng.jpg',
     'content/team/YonghyeokSon.jpg',
     'content/team/JooseongYun.jpg',
     'content/team/You.png',

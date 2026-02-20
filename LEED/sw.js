@@ -17,7 +17,7 @@ const URLS_TO_CACHE = [
   '/content/team/RamitDutta.jpg',
   '/content/team/RichardMcManus.png',
   '/content/team/KimPham.jpg',
-  '/content/team/Wei-YangWang.jpg',
+  '/content/team/Wei-YangWeng.jpg',
   '/content/team/MyeongseopSong.jpg',
   '/content/team/JunghyeonHwang.jpg',
   // Research icons

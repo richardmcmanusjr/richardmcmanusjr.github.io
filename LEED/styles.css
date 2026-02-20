@@ -991,6 +991,166 @@ section:nth-child(even) {
 }
 
 /* Alumni Section */
+.alumni-table-wrapper {
+    overflow-x: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alumni-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-lighter);
+}
+
+.alumni-table thead {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, #0056b3 100%);
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.alumni-table thead th {
+    padding: calc(var(--spacing) * 1.5);
+    text-align: left;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.alumni-table tbody tr {
+    border-bottom: 1px solid var(--bg-light);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.alumni-table tbody tr:hover {
+    background: var(--bg-light);
+    box-shadow: inset 4px 0 0 var(--accent-blue);
+}
+
+.alumni-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.alumni-table td {
+    padding: calc(var(--spacing) * 1.25);
+}
+
+.alumni-name-cell {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+.alumni-role-cell {
+    color: var(--accent-blue);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.alumni-position-cell {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.alumni-note {
+    margin-top: calc(var(--spacing) * 1.5);
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.co-advised {
+    color: var(--accent-blue);
+    font-weight: 600;
+    display: inline;
+    margin-left: 4px;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .alumni-table-wrapper {
+        box-shadow: none;
+    }
+
+    .alumni-table thead {
+        display: none;
+    }
+    
+    .alumni-table {
+        background: transparent;
+    }
+    
+    .alumni-table tbody {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing) * 1.5);
+    }
+    
+    .alumni-table tr {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing) * 1);
+        background: var(--bg-lighter);
+        border: none;
+        border-left: 4px solid var(--accent-blue);
+        border-radius: 8px;
+        padding: calc(var(--spacing) * 1.5);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .alumni-table tr:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+    }
+    
+    .alumni-table td {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border: none;
+    }
+    
+    .alumni-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--accent-blue);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: calc(var(--spacing) * 0.5);
+        display: block;
+    }
+    
+    .alumni-name-cell {
+        grid-column: 1;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+    }
+    
+    .alumni-name-cell::before {
+        content: "Name";
+    }
+    
+    .alumni-role-cell::before {
+        content: "Degree/Position";
+    }
+    
+    .alumni-position-cell::before {
+        content: "Last Known Affiliation";
+    }
+
+    .alumni-name-cell,
+    .alumni-role-cell,
+    .alumni-position-cell {
+        padding: 0 !important;
+    }
+}
+
+/* List-based styling for legacy support */
 .alumni-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
