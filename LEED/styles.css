@@ -1052,6 +1052,7 @@ section:nth-child(even) {
     color: var(--text-light);
     font-size: 0.95rem;
     line-height: 1.5;
+    font-weight: 300;
 }
 
 .alumni-note {
