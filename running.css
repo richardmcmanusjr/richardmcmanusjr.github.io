@@ -534,8 +534,12 @@ body {
     margin-bottom: 8rem;
 }
 
-.featured-race .container:first-of-type {
+.featured-race .container {
     margin-bottom: 8rem;
+}
+
+.featured-race .container:last-of-type {
+    margin-bottom: 0;
 }
 
 .featured-content {
